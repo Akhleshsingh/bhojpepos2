@@ -589,9 +589,10 @@ export default function TablesPage() {
   const handleAddTable = async (data) => {
     try {
       await dispatch(createTable(data)).unwrap()
+      await dispatch(fetchTables())
       dispatch(showSnackbar({ message: 'Table added successfully', severity: 'success' }))
     } catch (err) {
-      dispatch(showSnackbar({ message: `Failed to add table: ${err}`, severity: 'error' }))
+      dispatch(showSnackbar({ message: `Failed to add table: ${err?.message || err}`, severity: 'error' }))
     }
   }
 
@@ -747,7 +748,16 @@ export default function TablesPage() {
           <Box sx={{ textAlign: 'center', py: 8 }}>
             <TableRestaurant sx={{ fontSize: 64, color: '#d1d5db', mb: 2 }} />
             <Typography variant="h6" color="text.secondary" fontWeight={600}>No tables found</Typography>
-            <Button variant="contained" startIcon={<Add />} onClick={() => setAddDialog(true)} sx={{ mt: 2 }}>Add Table</Button>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>Add your first table to get started</Typography>
+            <Button variant="contained" startIcon={<Add />} onClick={() => setAddDialog(true)} sx={{ mr: 1 }}>Add Table</Button>
+            <Button variant="outlined" onClick={() => dispatch(fetchTables())} sx={{ mt: { xs: 1, sm: 0 } }}>Refresh</Button>
+          </Box>
+        )}
+        {!loading && tables.length > 0 && Object.values(filteredTables).every(arr => arr.length === 0) && (
+          <Box sx={{ textAlign: 'center', py: 8 }}>
+            <TableRestaurant sx={{ fontSize: 64, color: '#d1d5db', mb: 2 }} />
+            <Typography variant="h6" color="text.secondary" fontWeight={600}>No tables in this area</Typography>
+            <Button variant="outlined" onClick={() => dispatch(setActiveSection('All Area'))} sx={{ mt: 2 }}>Show All Areas</Button>
           </Box>
         )}
       </Box>
