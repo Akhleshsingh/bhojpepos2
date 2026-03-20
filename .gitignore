@@ -30,3 +30,7 @@ Thumbs.db
 # Temp
 *.tmp
 .cache/
+-e 
+# Environment files
+*.env
+*.env.*
