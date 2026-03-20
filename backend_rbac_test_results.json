@@ -1,0 +1,322 @@
+{
+  "test_summary": {
+    "total_tests": 25,
+    "passed_tests": 25,
+    "failed_tests": 0,
+    "success_rate": "100.0%",
+    "timestamp": "2026-03-20T14:03:09.952130"
+  },
+  "detailed_results": [
+    {
+      "test": "Login as admin",
+      "success": true,
+      "timestamp": "2026-03-20T14:03:06.350068",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/auth/login",
+        "role": null,
+        "response_preview": "{\"user\":{\"name\":\"Admin User\",\"email\":\"admin@bhojpe.com\",\"username\":\"admin\",\"role\":\"admin\",\"restaurant_id\":\"69bd4fef614da7b7c64bd169\",\"color\":\"#FF3D01\",\"active\":true,\"created_at\":\"2026-03-20T13:47:27.8"
+      }
+    },
+    {
+      "test": "Login as waiter",
+      "success": true,
+      "timestamp": "2026-03-20T14:03:06.519260",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/auth/login",
+        "role": null,
+        "response_preview": "{\"user\":{\"name\":\"Raju Singh\",\"email\":\"waiter@bhojpe.com\",\"username\":\"waiter\",\"role\":\"waiter\",\"restaurant_id\":\"69bd4fef614da7b7c64bd169\",\"color\":\"#1a4fcc\",\"active\":true,\"created_at\":\"2026-03-20T13:47:2"
+      }
+    },
+    {
+      "test": "Login as chef",
+      "success": true,
+      "timestamp": "2026-03-20T14:03:06.679862",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/auth/login",
+        "role": null,
+        "response_preview": "{\"user\":{\"name\":\"Ramesh Chef\",\"email\":\"chef@bhojpe.com\",\"username\":\"chef\",\"role\":\"chef\",\"restaurant_id\":\"69bd4fef614da7b7c64bd169\",\"color\":\"#7e22ce\",\"active\":true,\"created_at\":\"2026-03-20T13:47:27.802"
+      }
+    },
+    {
+      "test": "Login as cashier",
+      "success": true,
+      "timestamp": "2026-03-20T14:03:06.842878",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/auth/login",
+        "role": null,
+        "response_preview": "{\"user\":{\"name\":\"Pooja Verma\",\"email\":\"cashier@bhojpe.com\",\"username\":\"cashier\",\"role\":\"cashier\",\"restaurant_id\":\"69bd4fef614da7b7c64bd169\",\"color\":\"#1a4fcc\",\"active\":true,\"created_at\":\"2026-03-20T13:"
+      }
+    },
+    {
+      "test": "Health check",
+      "success": true,
+      "timestamp": "2026-03-20T14:03:07.021004",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/health",
+        "role": null,
+        "response_preview": "{\"status\":\"healthy\",\"timestamp\":\"2026-03-20T14:03:06.993489+00:00\",\"version\":\"1.0.0\"}"
+      }
+    },
+    {
+      "test": "admin user profile",
+      "success": true,
+      "timestamp": "2026-03-20T14:03:07.174564",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/auth/me",
+        "role": "admin",
+        "response_preview": "{\"name\":\"Admin User\",\"email\":\"admin@bhojpe.com\",\"username\":\"admin\",\"role\":\"admin\",\"restaurant_id\":\"69bd4fef614da7b7c64bd169\",\"color\":\"#FF3D01\",\"active\":true,\"created_at\":\"2026-03-20T13:47:27.800000\",\""
+      }
+    },
+    {
+      "test": "waiter user profile",
+      "success": true,
+      "timestamp": "2026-03-20T14:03:07.299314",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/auth/me",
+        "role": "waiter",
+        "response_preview": "{\"name\":\"Raju Singh\",\"email\":\"waiter@bhojpe.com\",\"username\":\"waiter\",\"role\":\"waiter\",\"restaurant_id\":\"69bd4fef614da7b7c64bd169\",\"color\":\"#1a4fcc\",\"active\":true,\"created_at\":\"2026-03-20T13:47:27.801000"
+      }
+    },
+    {
+      "test": "chef user profile",
+      "success": true,
+      "timestamp": "2026-03-20T14:03:07.455506",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/auth/me",
+        "role": "chef",
+        "response_preview": "{\"name\":\"Ramesh Chef\",\"email\":\"chef@bhojpe.com\",\"username\":\"chef\",\"role\":\"chef\",\"restaurant_id\":\"69bd4fef614da7b7c64bd169\",\"color\":\"#7e22ce\",\"active\":true,\"created_at\":\"2026-03-20T13:47:27.802000\",\"id"
+      }
+    },
+    {
+      "test": "cashier user profile",
+      "success": true,
+      "timestamp": "2026-03-20T14:03:07.585240",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/auth/me",
+        "role": "cashier",
+        "response_preview": "{\"name\":\"Pooja Verma\",\"email\":\"cashier@bhojpe.com\",\"username\":\"cashier\",\"role\":\"cashier\",\"restaurant_id\":\"69bd4fef614da7b7c64bd169\",\"color\":\"#1a4fcc\",\"active\":true,\"created_at\":\"2026-03-20T13:47:27.80"
+      }
+    },
+    {
+      "test": "Waiter access to orders (should pass - orders.view permission)",
+      "success": true,
+      "timestamp": "2026-03-20T14:03:07.728988",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/orders",
+        "role": "waiter",
+        "response_preview": "[]"
+      }
+    },
+    {
+      "test": "Chef access to orders (should pass - orders.view permission)",
+      "success": true,
+      "timestamp": "2026-03-20T14:03:08.078817",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/orders",
+        "role": "chef",
+        "response_preview": "[]"
+      }
+    },
+    {
+      "test": "Cashier access to customers (should pass - customers.view permission)",
+      "success": true,
+      "timestamp": "2026-03-20T14:03:08.209906",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/customers",
+        "role": "cashier",
+        "response_preview": "[{\"name\":\"Rajesh Gupta\",\"phone\":\"9876501234\",\"email\":\"rajesh@gmail.com\",\"totalOrders\":12,\"totalSpent\":8640,\"loyaltyPoints\":86,\"restaurant_id\":\"69bd4fef614da7b7c64bd169\",\"created_at\":\"2026-03-20T13:47:"
+      }
+    },
+    {
+      "test": "Waiter access to reservations (should pass - reservations.view permission)",
+      "success": true,
+      "timestamp": "2026-03-20T14:03:08.328452",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/reservations",
+        "role": "waiter",
+        "response_preview": "[]"
+      }
+    },
+    {
+      "test": "Admin access to orders (should pass - full permissions)",
+      "success": true,
+      "timestamp": "2026-03-20T14:03:08.483662",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/orders",
+        "role": "admin",
+        "response_preview": "[]"
+      }
+    },
+    {
+      "test": "Admin access to customers (should pass - full permissions)",
+      "success": true,
+      "timestamp": "2026-03-20T14:03:08.603543",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/customers",
+        "role": "admin",
+        "response_preview": "[{\"name\":\"Rajesh Gupta\",\"phone\":\"9876501234\",\"email\":\"rajesh@gmail.com\",\"totalOrders\":12,\"totalSpent\":8640,\"loyaltyPoints\":86,\"restaurant_id\":\"69bd4fef614da7b7c64bd169\",\"created_at\":\"2026-03-20T13:47:"
+      }
+    },
+    {
+      "test": "Admin access to reservations (should pass - full permissions)",
+      "success": true,
+      "timestamp": "2026-03-20T14:03:08.725253",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/reservations",
+        "role": "admin",
+        "response_preview": "[]"
+      }
+    },
+    {
+      "test": "Chef denied access to customers (should fail - no permission)",
+      "success": true,
+      "timestamp": "2026-03-20T14:03:08.867763",
+      "details": {
+        "expected_status": 403,
+        "actual_status": 403,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/customers",
+        "role": "chef",
+        "response_preview": "{\"detail\":\"Permission denied: customers\"}"
+      }
+    },
+    {
+      "test": "Chef denied access to staff (should fail - no permission)",
+      "success": true,
+      "timestamp": "2026-03-20T14:03:09.018162",
+      "details": {
+        "expected_status": 403,
+        "actual_status": 403,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/staff",
+        "role": "chef",
+        "response_preview": "{\"detail\":\"Permission denied: staff.view\"}"
+      }
+    },
+    {
+      "test": "Waiter denied access to staff (should fail - no permission)",
+      "success": true,
+      "timestamp": "2026-03-20T14:03:09.149231",
+      "details": {
+        "expected_status": 403,
+        "actual_status": 403,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/staff",
+        "role": "waiter",
+        "response_preview": "{\"detail\":\"Permission denied: staff.view\"}"
+      }
+    },
+    {
+      "test": "admin access to menu",
+      "success": true,
+      "timestamp": "2026-03-20T14:03:09.283087",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/menu",
+        "role": "admin",
+        "response_preview": "[{\"name\":\"Paneer Butter Masala\",\"category\":\"Main Course\",\"price\":320,\"type\":\"veg\",\"available\":true,\"restaurant_id\":\"69bd4fef614da7b7c64bd169\",\"created_at\":\"2026-03-20T13:47:27.802000\",\"id\":\"69bd4fef61"
+      }
+    },
+    {
+      "test": "waiter access to menu",
+      "success": true,
+      "timestamp": "2026-03-20T14:03:09.430834",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/menu",
+        "role": "waiter",
+        "response_preview": "[{\"name\":\"Paneer Butter Masala\",\"category\":\"Main Course\",\"price\":320,\"type\":\"veg\",\"available\":true,\"restaurant_id\":\"69bd4fef614da7b7c64bd169\",\"created_at\":\"2026-03-20T13:47:27.802000\",\"id\":\"69bd4fef61"
+      }
+    },
+    {
+      "test": "chef access to menu",
+      "success": true,
+      "timestamp": "2026-03-20T14:03:09.572362",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/menu",
+        "role": "chef",
+        "response_preview": "[{\"name\":\"Paneer Butter Masala\",\"category\":\"Main Course\",\"price\":320,\"type\":\"veg\",\"available\":true,\"restaurant_id\":\"69bd4fef614da7b7c64bd169\",\"created_at\":\"2026-03-20T13:47:27.802000\",\"id\":\"69bd4fef61"
+      }
+    },
+    {
+      "test": "cashier access to menu",
+      "success": true,
+      "timestamp": "2026-03-20T14:03:09.697421",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/menu",
+        "role": "cashier",
+        "response_preview": "[{\"name\":\"Paneer Butter Masala\",\"category\":\"Main Course\",\"price\":320,\"type\":\"veg\",\"available\":true,\"restaurant_id\":\"69bd4fef614da7b7c64bd169\",\"created_at\":\"2026-03-20T13:47:27.802000\",\"id\":\"69bd4fef61"
+      }
+    },
+    {
+      "test": "Get menu for order creation",
+      "success": true,
+      "timestamp": "2026-03-20T14:03:09.821976",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/menu",
+        "role": "waiter",
+        "response_preview": "[{\"name\":\"Paneer Butter Masala\",\"category\":\"Main Course\",\"price\":320,\"type\":\"veg\",\"available\":true,\"restaurant_id\":\"69bd4fef614da7b7c64bd169\",\"created_at\":\"2026-03-20T13:47:27.802000\",\"id\":\"69bd4fef61"
+      }
+    },
+    {
+      "test": "Waiter create order (should pass - orders.create permission)",
+      "success": true,
+      "timestamp": "2026-03-20T14:03:09.951494",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/orders",
+        "role": "waiter",
+        "response_preview": "{\"items\":[{\"name\":\"Paneer Butter Masala\",\"price\":320,\"quantity\":1},{\"name\":\"Butter Naan\",\"price\":60,\"quantity\":2}],\"orderType\":\"dine\",\"tableNo\":\"T-01\",\"note\":\"Test order for RBAC testing\",\"customerId\""
+      }
+    }
+  ],
+  "user_tokens": {
+    "admin": true,
+    "waiter": true,
+    "chef": true,
+    "cashier": true
+  },
+  "focus_areas": [
+    "RBAC dotted permissions (orders.view, customers.view, reservations.view)",
+    "Role-based endpoint access",
+    "Permission denial verification"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "timestamp": "2026-03-20T13:55:11.957246",
+  "tests_run": 49,
+  "tests_passed": 41,
+  "failed_tests": [
+    {
+      "test": "RBAC - waiter access to orders",
+      "expected": 200,
+      "actual": 403,
+      "response": "{\"detail\":\"Permission denied: orders\"}"
+    },
+    {
+      "test": "RBAC - chef access to orders",
+      "expected": 200,
+      "actual": 403,
+      "response": "{\"detail\":\"Permission denied: orders\"}"
+    },
+    {
+      "test": "RBAC - chef access to menu",
+      "expected": 403,
+      "actual": 200,
+      "response": "[{\"name\":\"Paneer Butter Masala\",\"category\":\"Main Course\",\"price\":320,\"type\":\"veg\",\"available\":true,\"restaurant_id\":\"69bd4fef614da7b7c64bd169\",\"created_at\":\"2026-03-20T13:47:27.802000\",\"id\":\"69bd4fef61"
+    },
+    {
+      "test": "List orders for waiter",
+      "expected": 200,
+      "actual": 403,
+      "response": "{\"detail\":\"Permission denied: orders\"}"
+    },
+    {
+      "test": "List orders for chef",
+      "expected": 200,
+      "actual": 403,
+      "response": "{\"detail\":\"Permission denied: orders\"}"
+    },
+    {
+      "test": "Create order",
+      "expected": 201,
+      "actual": 403,
+      "response": "{\"detail\":\"Permission denied: orders\"}"
+    },
+    {
+      "test": "List customers for cashier",
+      "expected": 200,
+      "actual": 403,
+      "response": "{\"detail\":\"Permission denied: customers\"}"
+    },
+    {
+      "test": "List reservations for waiter",
+      "expected": 200,
+      "actual": 403,
+      "response": "{\"detail\":\"Permission denied: reservations\"}"
+    }
+  ],
+  "success_rate": 83.6734693877551,
+  "overall_success": true
+}

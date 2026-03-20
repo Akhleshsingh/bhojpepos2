@@ -1,0 +1,161 @@
+{
+  "identity": {
+    "persona": "E1: The Anti-AI Designer",
+    "archetype": "The Performance Pro (Archetype 2)",
+    "mission": "Transform a legacy POS into a high-octane, keyboard-driven, visually arresting SaaS system.",
+    "core_principles": [
+      "Speed is a Feature: <2s loads, 60fps interactions",
+      "Density is Good: Mode B Bento Grids for data density",
+      "Contrast is King: Deep Obsidian (#0A0A0A) vs Electric Blaze (#FF3D01)",
+      "Keyboard First: Every action must have a hotkey"
+    ]
+  },
+  "tech_stack_instructions": {
+    "framework": "React + Vite",
+    "styling": "Tailwind CSS + Shadcn/UI (Hybrid with existing MUI)",
+    "icons": "Lucide React (primary), Phosphor Icons (dense data)",
+    "fonts": "Plus Jakarta Sans (UI), JetBrains Mono (Numbers/Receipts)",
+    "mandatory_packages": [
+      "tailwindcss",
+      "postcss",
+      "autoprefixer",
+      "clsx",
+      "tailwind-merge",
+      "lucide-react",
+      "sonner",
+      "framer-motion"
+    ],
+    "migration_strategy": "Install Tailwind alongside MUI. Use Tailwind for all NEW layouts and container styling. Keep MUI for complex DataGrids/DatePickers but style them to match the Tailwind theme."
+  },
+  "theme_configuration": {
+    "colors": {
+      "light": {
+        "background": "#F4F4F5",
+        "surface": "#FFFFFF",
+        "surface_highlight": "#FAFAFA",
+        "text_primary": "#18181B",
+        "text_secondary": "#71717A",
+        "border": "#E4E4E7"
+      },
+      "dark": {
+        "background": "#0A0A0A",
+        "surface": "#121212",
+        "surface_highlight": "#1E1E1E",
+        "text_primary": "#FAFAFA",
+        "text_secondary": "#A1A1AA",
+        "border": "#27272A"
+      },
+      "brand": {
+        "primary": "#FF3D01",
+        "primary_hover": "#D63200",
+        "secondary": "#FFFFFF",
+        "accent": "#F59E0B"
+      },
+      "status": {
+        "success": "#10B981",
+        "warning": "#F59E0B",
+        "error": "#EF4444",
+        "info": "#3B82F6"
+      }
+    },
+    "typography": {
+      "font_family_sans": "Plus Jakarta Sans, sans-serif",
+      "font_family_mono": "JetBrains Mono, monospace",
+      "headings": "font-extrabold tracking-tight",
+      "body": "font-medium tracking-normal"
+    },
+    "border_radius": {
+      "sm": "0.125rem",
+      "md": "0.375rem",
+      "lg": "0.5rem",
+      "full": "9999px"
+    }
+  },
+  "layout_strategy": {
+    "global": {
+      "spacing": "Generous padding (p-6 to p-8) for dashboard, Tight padding (p-2 to p-4) for POS grid.",
+      "container": "w-full max-w-[1920px] mx-auto"
+    },
+    "pos_screen": {
+      "type": "Bento Grid Mode B (High Density)",
+      "structure": "Grid columns: Category Sidebar (1fr) | Menu Grid (3fr) | Cart Panel (2fr)",
+      "gap": "gap-4",
+      "mobile_adaptation": "Stack vertically, use Bottom Sheet for Cart"
+    },
+    "dashboard": {
+      "type": "Bento Grid Mode A (Asymmetry)",
+      "structure": "Hero Metric (col-span-2) + Feed (row-span-2) + Quick Actions",
+      "gap": "gap-6"
+    }
+  },
+  "component_guidelines": {
+    "buttons": {
+      "style": "Sharp or slightly rounded (rounded-md). No pill shapes for POS actions.",
+      "variants": {
+        "primary": "bg-[#FF3D01] text-white hover:bg-[#D63200] shadow-[0_0_15px_rgba(255,61,1,0.3)]",
+        "secondary": "bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-white hover:bg-zinc-200 dark:hover:bg-zinc-700",
+        "ghost": "hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-400"
+      }
+    },
+    "cards": {
+      "style": "Flat, 1px border. No heavy shadows.",
+      "border": "border border-zinc-200 dark:border-zinc-800",
+      "hover": "hover:border-[#FF3D01]/50 transition-colors duration-200"
+    },
+    "inputs": {
+      "height": "h-12 (48px) minimum for touch targets",
+      "style": "bg-transparent border border-zinc-200 dark:border-zinc-800 focus:ring-1 focus:ring-[#FF3D01]"
+    },
+    "kot_tickets": {
+      "style": "Masonry layout card",
+      "status_colors": {
+        "new": "border-l-4 border-green-500",
+        "preparing": "border-l-4 border-yellow-500",
+        "ready": "border-l-4 border-[#FF3D01]"
+      }
+    }
+  },
+  "assets": {
+    "images": {
+      "login_bg": {
+        "url": "https://images.unsplash.com/photo-1702096376357-60b40d1253f5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzJ8MHwxfHNlYXJjaHw0fHxhYnN0cmFjdCUyMHJlc3RhdXJhbnQlMjBpbnRlcmlvciUyMGJsdXJ8ZW58MHx8fHwxNzc0MDEzNjg3fDA&ixlib=rb-4.1.0&q=85",
+        "alt": "Abstract Restaurant Blur",
+        "usage": "Login screen background with overlay"
+      },
+      "empty_cart": {
+        "url": "https://images.unsplash.com/photo-1597667756343-810c1d7069be?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzN8MHwxfHNlYXJjaHwzfHxyZXN0YXVyYW50JTIwa2l0Y2hlbiUyMGNoZWYlMjBjb29raW5nJTIwZGFyayUyMGFlc3RoZXRpY3xlbnwwfHx8fDE3NzQwMTM2ODV8MA&ixlib=rb-4.1.0&q=85",
+        "alt": "Empty State Chef",
+        "usage": "Empty state for orders/cart"
+      },
+      "food_placeholders": [
+        {
+          "url": "https://images.unsplash.com/photo-1610970879786-70b2cc0e8a9c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzN8MHwxfHNlYXJjaHwzfHxnb3VybWV0JTIwYnVyZ2VyJTIwZGFyayUyMGJhY2tncm91bmR8ZW58MHx8fHwxNzc0MDEzNjg2fDA&ixlib=rb-4.1.0&q=85",
+          "category": "Burger"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1761315600943-d8a5bb0c499f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzR8MHwxfHNlYXJjaHwyfHxmcmVzaCUyMHNhbGFkJTIwYm93bCUyMG92ZXJoZWFkfGVufDB8fHx8MTc3MzkyNzUxNHww&ixlib=rb-4.1.0&q=85",
+          "category": "Salad"
+        }
+      ]
+    }
+  },
+  "specific_module_instructions": {
+    "pos": {
+      "layout": "3-Column Density",
+      "interactions": "Optimistic UI for add-to-cart. Sound effects on success. Keyboard shortcuts (F1-F12) for categories.",
+      "visuals": "High contrast text. No gradients on item cards."
+    },
+    "kitchen": {
+      "layout": "Kanban / Masonry",
+      "font": "Large readable text (text-xl) for order numbers",
+      "alerts": "Flash card red if time > 20mins"
+    }
+  },
+  "universal_guidelines": [
+    "Do NOT use gradients for backgrounds (Solid Obsidian #0A0A0A).",
+    "Do NOT use rounded-full buttons for primary actions (Use rounded-md).",
+    "Use 'sonner' for all toast notifications.",
+    "Ensure 'data-testid' is present on all interactive elements.",
+    "Dark mode is the default for POS; Light mode is secondary."
+  ]
+}

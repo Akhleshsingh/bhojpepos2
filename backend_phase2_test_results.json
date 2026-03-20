@@ -1,0 +1,180 @@
+{
+  "test_summary": {
+    "total_tests": 13,
+    "passed_tests": 13,
+    "failed_tests": 0,
+    "success_rate": "100.0%",
+    "timestamp": "2026-03-20T14:20:56.650859"
+  },
+  "phase_2_features_tested": [
+    "Kitchen Display System (KDS) - KOT endpoints",
+    "Stripe Payment Integration - checkout and status",
+    "Receipt Generation - order receipt endpoint",
+    "WebSocket notifications - real-time connectivity"
+  ],
+  "detailed_results": [
+    {
+      "test": "Login as admin",
+      "success": true,
+      "timestamp": "2026-03-20T14:20:50.242579",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/auth/login",
+        "role": null,
+        "response_preview": "{\"user\":{\"name\":\"Admin User\",\"email\":\"admin@bhojpe.com\",\"username\":\"admin\",\"role\":\"admin\",\"restaurant_id\":\"69bd4fef614da7b7c64bd169\",\"color\":\"#FF3D01\",\"active\":true,\"created_at\":\"2026-03-20T13:47:27.800000\",\"id\":\"69bd4fef614da7b7c64bd175\",\"permissions\":[\"dashboard\",\"pos\",\"orders\",\"kot\",\"tables\",\"res"
+      }
+    },
+    {
+      "test": "Login as chef",
+      "success": true,
+      "timestamp": "2026-03-20T14:20:50.360520",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/auth/login",
+        "role": null,
+        "response_preview": "{\"user\":{\"name\":\"Ramesh Chef\",\"email\":\"chef@bhojpe.com\",\"username\":\"chef\",\"role\":\"chef\",\"restaurant_id\":\"69bd4fef614da7b7c64bd169\",\"color\":\"#7e22ce\",\"active\":true,\"created_at\":\"2026-03-20T13:47:27.802000\",\"id\":\"69bd4fef614da7b7c64bd179\",\"permissions\":[\"orders.view\",\"kot\"],\"restaurant_name\":\"Bhojpe R"
+      }
+    },
+    {
+      "test": "Health check",
+      "success": true,
+      "timestamp": "2026-03-20T14:20:50.483808",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/health",
+        "role": null,
+        "response_preview": "{\"status\":\"healthy\",\"timestamp\":\"2026-03-20T14:20:50.463556+00:00\",\"version\":\"1.0.0\"}"
+      }
+    },
+    {
+      "test": "Menu access",
+      "success": true,
+      "timestamp": "2026-03-20T14:20:50.584660",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/menu",
+        "role": "admin",
+        "response_preview": "[{\"name\":\"Paneer Butter Masala\",\"category\":\"Main Course\",\"price\":320,\"type\":\"veg\",\"available\":true,\"restaurant_id\":\"69bd4fef614da7b7c64bd169\",\"created_at\":\"2026-03-20T13:47:27.802000\",\"id\":\"69bd4fef614da7b7c64bd17b\"},{\"name\":\"Dal Makhani\",\"category\":\"Main Course\",\"price\":250,\"type\":\"veg\",\"available\""
+      }
+    },
+    {
+      "test": "GET /api/kot with admin role",
+      "success": true,
+      "timestamp": "2026-03-20T14:20:50.705285",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/kot",
+        "role": "admin",
+        "response_preview": "[]"
+      }
+    },
+    {
+      "test": "GET /api/kot with chef role",
+      "success": true,
+      "timestamp": "2026-03-20T14:20:50.810415",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/kot",
+        "role": "chef",
+        "response_preview": "[]"
+      }
+    },
+    {
+      "test": "Create test order for KOT",
+      "success": true,
+      "timestamp": "2026-03-20T14:20:50.905624",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/orders",
+        "role": "admin",
+        "response_preview": "{\"items\":[{\"id\":\"test123\",\"name\":\"Paneer Butter Masala\",\"price\":320,\"qty\":1,\"type\":\"veg\"},{\"id\":\"test124\",\"name\":\"Butter Naan\",\"price\":60,\"qty\":2,\"type\":\"veg\"}],\"orderType\":\"dine\",\"tableNo\":\"T-01\",\"note\":\"Test order for KOT Phase 2 testing\",\"customerId\":null,\"customerName\":null,\"paymentMethod\":\"cash"
+      }
+    },
+    {
+      "test": "POST /api/kot - Create KOT ticket",
+      "success": true,
+      "timestamp": "2026-03-20T14:20:51.089465",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/kot",
+        "role": "admin",
+        "response_preview": "{\"order_id\":\"69bd57c273c1685ee46501e9\",\"items\":[{\"id\":\"test123\",\"name\":\"Paneer Butter Masala\",\"price\":320,\"qty\":1,\"type\":\"veg\"},{\"id\":\"test124\",\"name\":\"Butter Naan\",\"price\":60,\"qty\":2,\"type\":\"veg\"}],\"priority\":\"normal\",\"notes\":\"Phase 2 test KOT\",\"status\":\"pending\",\"restaurant_id\":\"69bd4fef614da7b7c6"
+      }
+    },
+    {
+      "test": "PUT /api/kot/{kot_id}/status - Update KOT status",
+      "success": true,
+      "timestamp": "2026-03-20T14:20:51.245771",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/kot/69bd57c373c1685ee46501eb/status",
+        "role": "chef",
+        "response_preview": "{\"order_id\":\"69bd57c273c1685ee46501e9\",\"items\":[{\"id\":\"test123\",\"name\":\"Paneer Butter Masala\",\"price\":320,\"qty\":1,\"type\":\"veg\"},{\"id\":\"test124\",\"name\":\"Butter Naan\",\"price\":60,\"qty\":2,\"type\":\"veg\"}],\"priority\":\"normal\",\"notes\":\"Phase 2 test KOT\",\"status\":\"preparing\",\"restaurant_id\":\"69bd4fef614da7b7"
+      }
+    },
+    {
+      "test": "POST /api/payments/checkout - Create Stripe session",
+      "success": true,
+      "timestamp": "2026-03-20T14:20:51.991119",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/payments/checkout",
+        "role": "admin",
+        "response_preview": "{\"url\":\"https://checkout.stripe.com/c/pay/cs_test_a1V71PjdYM3EjNxZuFPkPGQeSSvm2Qrh4leIetV4n45cxz8aBMYgK7M6vD#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSdkdWxOYHwnPyd1blpxYHZxWjA0V2xNTTNGQU9iY0w8d1VifVUyPXZSaEc8YUpOUTFgdzdEZkNyPTNOZFJSaWNpQ19HfWJwTXJWUDxsY1BJYTNqUW01NW1XYV83VmNjMGgyPE1zPEh0N3QxNTV%2FR0BiYnd"
+      }
+    },
+    {
+      "test": "GET /api/payments/status/{session_id} - Check payment status",
+      "success": true,
+      "timestamp": "2026-03-20T14:20:54.304907",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/payments/status/cs_test_a1V71PjdYM3EjNxZuFPkPGQeSSvm2Qrh4leIetV4n45cxz8aBMYgK7M6vD",
+        "role": "admin",
+        "response_preview": "{\"session_id\":\"cs_test_a1V71PjdYM3EjNxZuFPkPGQeSSvm2Qrh4leIetV4n45cxz8aBMYgK7M6vD\",\"order_id\":\"69bd57c273c1685ee46501e9\",\"order_number\":\"#10978\",\"amount\":484.0,\"currency\":\"inr\",\"user_id\":\"69bd4fef614da7b7c64bd175\",\"restaurant_id\":\"69bd4fef614da7b7c64bd169\",\"payment_status\":\"unpaid\",\"status\":\"open\",\""
+      }
+    },
+    {
+      "test": "GET /api/orders/{order_id}/receipt - Generate receipt",
+      "success": true,
+      "timestamp": "2026-03-20T14:20:54.409631",
+      "details": {
+        "expected_status": 200,
+        "actual_status": 200,
+        "url": "https://kds-phase4.preview.emergentagent.com/api/orders/69bd57c273c1685ee46501e9/receipt",
+        "role": "admin",
+        "response_preview": "{\"restaurant\":{\"name\":\"Bhojpe Restaurant\",\"address\":\"123 Food Street, Indore, MP\",\"phone\":\"+91 98765 43210\",\"gstin\":\"\"},\"order\":{\"number\":\"#10978\",\"type\":\"dine\",\"table\":\"T-01\",\"date\":\"2026-03-20T14:20:50.889000\",\"waiter\":\"Admin User\",\"customer\":null},\"items\":[{\"id\":\"test123\",\"name\":\"Paneer Butter Ma"
+      }
+    },
+    {
+      "test": "WebSocket /api/ws/{restaurant_id} connectivity",
+      "success": true,
+      "timestamp": "2026-03-20T14:20:56.650825",
+      "details": {
+        "connection": "established",
+        "messages": "none"
+      }
+    }
+  ],
+  "test_data_created": {
+    "order_id": "69bd57c273c1685ee46501e9",
+    "kot_id": "69bd57c373c1685ee46501eb",
+    "session_id": "cs_test_a1V71PjdYM3EjNxZuFPkPGQeSSvm2Qrh4leIetV4n45cxz8aBMYgK7M6vD"
+  },
+  "websocket_messages": [],
+  "user_tokens": {
+    "admin": true,
+    "chef": true
+  }
+}
