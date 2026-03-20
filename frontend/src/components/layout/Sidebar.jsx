@@ -8,6 +8,7 @@ import {
   Dashboard, PointOfSale, Receipt, TableRestaurant, BookOnline,
   People, Restaurant, Group, Kitchen, BarChart, Settings,
   ChevronLeft, Logout, ChevronRight, LocalShipping, Shield,
+  RoomService
 } from '@mui/icons-material'
 import { logout, hasPermission, isModuleActive, ROLES } from '../../features/authSlice'
 import { setSidebarOpen, showConfirmDialog } from '../../features/uiSlice'
@@ -20,6 +21,7 @@ const navItems = [
   { path: '/pos', label: 'POS', icon: <PointOfSale />, permission: 'pos', moduleKey: 'pos' },
   { path: '/tables', label: 'Tables', icon: <TableRestaurant />, permission: 'pos', moduleKey: 'tables' },
   { path: '/orders', label: 'Orders & KOT', icon: <Receipt />, permission: 'orders', moduleKey: 'orders' },
+  { path: '/waiter-requests', label: 'Waiter Requests', icon: <RoomService />, permission: 'orders', moduleKey: 'orders' },
   { path: '/reservations', label: 'Reservations', icon: <BookOnline />, permission: 'reservations', moduleKey: 'reservations' },
   { path: '/customers', label: 'Customers', icon: <People />, permission: 'customers', moduleKey: 'customers' },
   { path: '/menu', label: 'Menu', icon: <Restaurant />, permission: 'menu', moduleKey: 'menu' },

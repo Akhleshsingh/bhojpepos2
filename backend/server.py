@@ -46,6 +46,7 @@ orders_col = db["orders"]
 customers_col = db["customers"]
 tables_col = db["tables"]
 reservations_col = db["reservations"]
+waiter_requests_col = db["waiter_requests"]
 activity_logs_col = db["activity_logs"]
 payment_transactions_col = db["payment_transactions"]
 kot_col = db["kot"]
@@ -955,6 +956,137 @@ async def get_dashboard_stats(user: Dict = Depends(require_permission("dashboard
     restaurant_id = user.get("restaurant_id")
     today = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
     
+
+
+# ======================== WAITER REQUESTS ========================
+
+class WaiterRequestCreate(BaseModel):
+    table_id: str
+    table_name: str
+    request_type: str
+    urgency: Optional[str] = "normal"
+    note: Optional[str] = None
+
+@app.get("/api/waiter-requests")
+async def get_waiter_requests(
+    status: Optional[str] = "pending",
+    user: Dict = Depends(require_permission("orders"))
+):
+    restaurant_id = user.get("restaurant_id")
+    query = {"restaurant_id": restaurant_id}
+    
+    if status:
+        query["status"] = status
+    
+    requests_list = serialize_docs(waiter_requests_col.find(query).sort("created_at", -1))
+    
+    # Calculate stats
+    all_requests = serialize_docs(waiter_requests_col.find({"restaurant_id": restaurant_id}))
+    total = len(all_requests)
+    pending = len([r for r in all_requests if r.get("status") == "pending"])
+    resolved = len([r for r in all_requests if r.get("status") == "resolved"])
+    high_urgency = len([r for r in all_requests if r.get("urgency") == "high" and r.get("status") == "pending"])
+    
+    return {
+        "requests": requests_list,
+        "stats": {
+            "total": total,
+            "pending": pending,
+            "resolved": resolved,
+            "high_urgency": high_urgency
+        }
+    }
+
+@app.post("/api/waiter-requests")
+async def create_waiter_request(
+    data: WaiterRequestCreate,
+    user: Dict = Depends(require_permission("orders"))
+):
+    request_data = {
+        **data.model_dump(),
+        "status": "pending",
+        "restaurant_id": user.get("restaurant_id"),
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "created_by": user.get("username", "customer")
+    }
+    result = waiter_requests_col.insert_one(request_data)
+    return serialize_doc(waiter_requests_col.find_one({"_id": result.inserted_id}))
+
+@app.put("/api/waiter-requests/{request_id}/resolve")
+async def resolve_waiter_request(
+    request_id: str,
+    user: Dict = Depends(require_permission("orders"))
+):
+    update_data = {
+        "status": "resolved",
+        "resolved_at": datetime.now(timezone.utc).isoformat(),
+        "resolved_by": user.get("username")
+    }
+    waiter_requests_col.update_one({"_id": ObjectId(request_id)}, {"$set": update_data})
+    return serialize_doc(waiter_requests_col.find_one({"_id": ObjectId(request_id)}))
+
+@app.delete("/api/waiter-requests/{request_id}")
+async def delete_waiter_request(
+    request_id: str,
+    user: Dict = Depends(require_permission("orders"))
+):
+    result = waiter_requests_col.delete_one({"_id": ObjectId(request_id)})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Request not found")
+    return {"success": True, "message": "Request deleted"}
+
+# ======================== ENHANCED CUSTOMER & STAFF STATS ========================
+
+@app.get("/api/customers/stats")
+async def get_customer_stats(user: Dict = Depends(require_permission("customers"))):
+    restaurant_id = user.get("restaurant_id")
+    
+    customers = serialize_docs(customers_col.find({"restaurant_id": restaurant_id}))
+    orders = serialize_docs(orders_col.find({"restaurant_id": restaurant_id, "status": {"$in": ["completed", "paid"]}}))
+    
+    total_customers = len(customers)
+    customers_with_orders = len(set([o.get("customer_phone") for o in orders if o.get("customer_phone")]))
+    total_revenue = sum([o.get("total", 0) for o in orders])
+    
+    return {
+        "total": total_customers,
+        "with_orders": customers_with_orders,
+        "revenue": total_revenue
+    }
+
+@app.get("/api/customers/{customer_id}/orders")
+async def get_customer_orders(
+    customer_id: str,
+    user: Dict = Depends(require_permission("customers"))
+):
+    customer = serialize_doc(customers_col.find_one({"_id": ObjectId(customer_id)}))
+    if not customer:
+        raise HTTPException(status_code=404, detail="Customer not found")
+    
+    orders = serialize_docs(orders_col.find({"customer_phone": customer.get("phone")}).sort("created_at", -1))
+    
+    return {"customer": customer, "orders": orders}
+
+@app.get("/api/staff/stats")
+async def get_staff_stats(user: Dict = Depends(require_permission("staff"))):
+    restaurant_id = user.get("restaurant_id")
+    
+    staff = serialize_docs(users_col.find({"restaurant_id": restaurant_id, "role": {"$ne": "superadmin"}}))
+    
+    total_staff = len(staff)
+    active_staff = len([s for s in staff if s.get("status") != "inactive"])
+    
+    roles = {}
+    for s in staff:
+        role = s.get("role", "unknown")
+        roles[role] = roles.get(role, 0) + 1
+    
+    return {
+        "total": total_staff,
+        "active": active_staff,
+        "roles": roles
+    }
+
     query = {}
     if user["role"] != "super_admin":
         query["restaurant_id"] = restaurant_id
