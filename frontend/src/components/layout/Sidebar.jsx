@@ -72,11 +72,10 @@ export default function Sidebar({ open }) {
           overflowX: 'hidden',
           transition: 'width 0.28s cubic-bezier(.4,0,.2,1)',
           border: 'none',
-          bgcolor: '#0f1117',
         },
       }}
     >
-      <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', bgcolor: '#0f1117', color: '#fff' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', color: '#fff' }}>
         {/* Logo */}
         <Box sx={{
           p: open ? 2.5 : 1.5,
@@ -181,7 +180,7 @@ export default function Sidebar({ open }) {
         <Box sx={{
           p: open ? 2 : 1,
           borderTop: '1px solid rgba(255,255,255,0.08)',
-          bgcolor: '#161b27', flexShrink: 0,
+          bgcolor: 'rgba(0,0,0,0.2)', flexShrink: 0,
           display: 'flex', alignItems: 'center',
           gap: open ? 1.5 : 0,
           justifyContent: open ? 'flex-start' : 'center',
