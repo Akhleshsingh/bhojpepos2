@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import {
   Box, Typography, TextField, Button, IconButton, Badge, Chip,
-  Select, MenuItem, FormControl, InputLabel, Card, CardMedia, CardContent,
-  Divider, Radio, RadioGroup, FormControlLabel
+  Select, MenuItem, FormControl, Card, CardMedia, CardContent,
+  Divider
 } from '@mui/material'
 import {
   Search, Add, Remove, Delete, Person, Restaurant, Print,
-  LocalShipping, Description
+  LocalShipping, Description, ShoppingCart
 } from '@mui/icons-material'
 import PosHeaderNew from '../../components/layout/PosHeaderNew'
 import { fetchMenu } from '../../features/menuSlice'
@@ -44,7 +44,7 @@ export default function PosPageNew() {
   const dispatch = useDispatch()
   const location = useLocation()
   
-  const menu = useSelector(s => s.menu.items)
+  const menu = useSelector(s => s.menu.items) || []
   const user = useSelector(s => s.auth.user)
   
   const [cart, setCart] = useState([])
