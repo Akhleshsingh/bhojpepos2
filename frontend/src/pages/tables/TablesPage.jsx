@@ -10,7 +10,7 @@ import {
 import {
   Add, TakeoutDining, LocalShipping, SwapHoriz, CallMerge,
   Close, TableRestaurant, AccessTime, Receipt, Person, Kitchen,
-  CheckCircle, AttachMoney, Restaurant
+  CheckCircle, AttachMoney, Restaurant, RoomService
 } from '@mui/icons-material'
 import { fetchTables, createTable, updateTable, setActiveSection } from '../../features/tablesSlice'
 import { showSnackbar } from '../../features/uiSlice'
@@ -288,6 +288,35 @@ function TableCard({ table, onClick, onSelect, isSelected, selectionMode }) {
                     sx={{ minWidth: 0, px: 0.8, py: 0.2, fontSize: 10, fontWeight: 700, bgcolor: '#22c55e', '&:hover': { bgcolor: '#16a34a' } }}>
                     Pay
                   </Button>
+                  <Tooltip title="Call Waiter">
+                    <IconButton 
+                      size="small" 
+                      onClick={async (e) => {
+                        e.stopPropagation()
+                        try {
+                          await apiClient.post('/waiter-requests', {
+                            table_id: table.id,
+                            table_name: table.name,
+                            request_type: 'service',
+                            urgency: 'normal'
+                          })
+                        } catch (err) {
+                          console.error('Failed to send waiter request')
+                        }
+                      }}
+                      sx={{ 
+                        minWidth: 0, 
+                        width: 22, 
+                        height: 22, 
+                        bgcolor: '#fef3c7', 
+                        color: '#f59e0b',
+                        ml: 0.5,
+                        '&:hover': { bgcolor: '#fde68a' }
+                      }}
+                    >
+                      <RoomService sx={{ fontSize: 12 }} />
+                    </IconButton>
+                  </Tooltip>
                 </>
               )}
             </Box>
