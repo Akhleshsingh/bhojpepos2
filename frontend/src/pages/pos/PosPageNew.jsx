@@ -8,7 +8,7 @@ import {
 } from '@mui/material'
 import {
   Search, Add, Remove, Delete, Person, Restaurant, Print,
-  LocalShipping
+  LocalShipping, Description
 } from '@mui/icons-material'
 import PosHeaderNew from '../../components/layout/PosHeaderNew'
 import { fetchMenu } from '../../features/menuSlice'
@@ -276,31 +276,6 @@ export default function PosPageNew() {
                 {filteredMenu.length} Items
               </Typography>
             </Box>
-
-            {/* Order Type Tabs */}
-            <Box sx={{ display: 'flex', gap: 2 }}>
-              {['DINE IN', 'PICKUP', 'DELIVERY'].map(type => (
-                <Button
-                  key={type}
-                  size="small"
-                  variant={orderType === type.toLowerCase().replace(' ', '') ? 'contained' : 'outlined'}
-                  onClick={() => setOrderType(type.toLowerCase().replace(' ', ''))}
-                  sx={{
-                    textTransform: 'uppercase',
-                    fontSize: 11,
-                    fontWeight: 700,
-                    bgcolor: orderType === type.toLowerCase().replace(' ', '') ? '#FF3D01' : 'transparent',
-                    color: orderType === type.toLowerCase().replace(' ', '') ? '#fff' : '#6b7280',
-                    borderColor: '#e5e7eb',
-                    '&:hover': {
-                      bgcolor: orderType === type.toLowerCase().replace(' ', '') ? '#e63600' : '#f9fafb'
-                    }
-                  }}
-                >
-                  {type}
-                </Button>
-              ))}
-            </Box>
           </Box>
 
           {/* Menu Grid */}
@@ -377,260 +352,320 @@ export default function PosPageNew() {
         {/* Right Sidebar - Order Panel */}
         <Box
           sx={{
-            width: 350,
+            width: 380,
             bgcolor: '#fff',
             borderLeft: '1px solid #e5e7eb',
             display: 'flex',
             flexDirection: 'column'
           }}
         >
-          {/* Order Header */}
-          <Box sx={{ p: 2, borderBottom: '1px solid #e5e7eb' }}>
+          {/* Order Type Tabs */}
+          <Box sx={{ display: 'flex', borderBottom: '2px solid #e5e7eb' }}>
+            {[
+              { key: 'dinein', label: 'DINE IN' },
+              { key: 'pickup', label: 'PICKUP' },
+              { key: 'delivery', label: 'DELIVERY' }
+            ].map(type => (
+              <Button
+                key={type.key}
+                fullWidth
+                onClick={() => setOrderType(type.key)}
+                sx={{
+                  textTransform: 'uppercase',
+                  fontSize: 12,
+                  fontWeight: 700,
+                  color: orderType === type.key ? '#FF3D01' : '#9ca3af',
+                  borderRadius: 0,
+                  borderBottom: orderType === type.key ? '3px solid #FF3D01' : '3px solid transparent',
+                  py: 1.5,
+                  '&:hover': {
+                    bgcolor: 'transparent',
+                    color: '#FF3D01'
+                  }
+                }}
+              >
+                {type.label}
+              </Button>
+            ))}
+          </Box>
+
+          {/* Order Controls */}
+          <Box sx={{ p: 2.5, borderBottom: '1px solid #e5e7eb' }}>
+            {/* Order # and Pax */}
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
-              <Typography sx={{ fontSize: 16, fontWeight: 800 }}>Order # 1</Typography>
-              <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-                <Typography sx={{ fontSize: 12, color: '#6b7280' }}>Pax</Typography>
-                <Box sx={{ display: 'flex', alignItems: 'center', bgcolor: '#f3f4f6', borderRadius: 1 }}>
-                  <IconButton size="small" onClick={() => setPax(Math.max(1, pax - 1))}>
-                    <Remove fontSize="small" />
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <Restaurant sx={{ fontSize: 18, color: '#6b7280' }} />
+                <Typography sx={{ fontSize: 15, fontWeight: 700, color: '#1f2937' }}>
+                  Order # 1
+                </Typography>
+              </Box>
+              
+              <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'center' }}>
+                <Typography sx={{ fontSize: 13, color: '#6b7280', fontWeight: 500 }}>Pax</Typography>
+                <Box sx={{ display: 'flex', alignItems: 'center', border: '1px solid #e5e7eb', borderRadius: 1.5 }}>
+                  <IconButton 
+                    size="small" 
+                    onClick={() => setPax(Math.max(1, pax - 1))}
+                    sx={{ p: 0.5 }}
+                  >
+                    <Remove sx={{ fontSize: 18 }} />
                   </IconButton>
-                  <Typography sx={{ px: 1, fontSize: 14, fontWeight: 700 }}>{pax}</Typography>
-                  <IconButton size="small" onClick={() => setPax(pax + 1)}>
-                    <Add fontSize="small" />
+                  <Typography sx={{ px: 1.5, fontSize: 15, fontWeight: 700, minWidth: 30, textAlign: 'center' }}>
+                    {pax}
+                  </Typography>
+                  <IconButton 
+                    size="small" 
+                    onClick={() => setPax(pax + 1)}
+                    sx={{ p: 0.5 }}
+                  >
+                    <Add sx={{ fontSize: 18 }} />
                   </IconButton>
                 </Box>
-                <IconButton size="small">
-                  <Restaurant fontSize="small" />
+                
+                <IconButton 
+                  size="small"
+                  sx={{ 
+                    bgcolor: '#f3f4f6',
+                    '&:hover': { bgcolor: '#e5e7eb' }
+                  }}
+                >
+                  <Restaurant sx={{ fontSize: 18 }} />
+                </IconButton>
+                
+                <IconButton 
+                  size="small"
+                  sx={{ 
+                    bgcolor: '#f3f4f6',
+                    '&:hover': { bgcolor: '#e5e7eb' }
+                  }}
+                >
+                  <Restaurant sx={{ fontSize: 18 }} />
                 </IconButton>
               </Box>
             </Box>
 
-            <FormControl fullWidth size="small" sx={{ mb: 1 }}>
-              <InputLabel>Add Customer Details</InputLabel>
-              <Select label="Add Customer Details">
-                <MenuItem value="">None</MenuItem>
-              </Select>
-            </FormControl>
+            {/* Customer Details */}
+            <Button
+              fullWidth
+              size="medium"
+              startIcon={<Person />}
+              sx={{
+                justifyContent: 'flex-start',
+                textTransform: 'none',
+                color: '#6b7280',
+                bgcolor: '#f9fafb',
+                border: '1px solid #e5e7eb',
+                fontWeight: 500,
+                fontSize: 14,
+                py: 1.2,
+                mb: 1.5,
+                '&:hover': { bgcolor: '#f3f4f6' }
+              }}
+            >
+              + Add Customer Details
+            </Button>
 
-            <FormControl fullWidth size="small">
-              <InputLabel>Select Waiter</InputLabel>
-              <Select value={waiter} onChange={(e) => setWaiter(e.target.value)} label="Select Waiter">
+            {/* Select Waiter */}
+            <FormControl fullWidth size="medium">
+              <Select 
+                value={waiter} 
+                onChange={(e) => setWaiter(e.target.value)}
+                displayEmpty
+                sx={{
+                  bgcolor: '#f9fafb',
+                  '& .MuiOutlinedInput-notchedOutline': {
+                    borderColor: '#e5e7eb'
+                  }
+                }}
+              >
+                <MenuItem value="">Select Waiter</MenuItem>
                 <MenuItem value={user?.name}>{user?.name}</MenuItem>
               </Select>
             </FormControl>
           </Box>
 
           {/* Cart Items */}
-          <Box sx={{ flex: 1, overflowY: 'auto', p: 2 }}>
+          <Box sx={{ flex: 1, overflowY: 'auto', p: 3, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             {cart.length === 0 ? (
-              <Box sx={{ textAlign: 'center', py: 8 }}>
-                <Restaurant sx={{ fontSize: 64, color: '#d1d5db', mb: 2 }} />
-                <Typography sx={{ color: '#9ca3af', fontSize: 14 }}>
+              <Box sx={{ textAlign: 'center' }}>
+                <ShoppingCart sx={{ fontSize: 80, color: '#d1d5db', mb: 2 }} />
+                <Typography sx={{ color: '#9ca3af', fontSize: 18, fontWeight: 600, mb: 0.5 }}>
                   Cart khali hai
                 </Typography>
-                <Typography sx={{ color: '#d1d5db', fontSize: 12 }}>
-                  Lail orde se items add karo
+                <Typography sx={{ color: '#d1d5db', fontSize: 14 }}>
+                  Left side se items add karo
                 </Typography>
               </Box>
             ) : (
-              cart.map(item => (
-                <Box key={item.id} sx={{ mb: 2, p: 1.5, bgcolor: '#f9fafb', borderRadius: 1 }}>
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 1 }}>
-                    <Box sx={{ flex: 1 }}>
-                      <Typography sx={{ fontSize: 13, fontWeight: 600 }}>{item.name}</Typography>
-                      <Typography sx={{ fontSize: 12, color: '#6b7280' }}>
-                        {formatCurrency(item.price)} × {item.qty}
+              <Box sx={{ width: '100%' }}>
+                {cart.map(item => (
+                  <Box key={item.id} sx={{ mb: 2, p: 2, bgcolor: '#f9fafb', borderRadius: 2, border: '1px solid #e5e7eb' }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 1.5 }}>
+                      <Box sx={{ flex: 1 }}>
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mb: 0.5 }}>
+                          <Box
+                            sx={{
+                              width: 10,
+                              height: 10,
+                              borderRadius: '50%',
+                              border: `2px solid ${item.type === 'veg' ? '#22c55e' : '#ef4444'}`,
+                            }}
+                          />
+                          <Typography sx={{ fontSize: 14, fontWeight: 600, color: '#1f2937' }}>
+                            {item.name}
+                          </Typography>
+                        </Box>
+                        <Typography sx={{ fontSize: 13, color: '#6b7280' }}>
+                          {formatCurrency(item.price)} × {item.qty}
+                        </Typography>
+                      </Box>
+                      <IconButton size="small" onClick={() => removeFromCart(item.id)}>
+                        <Delete fontSize="small" sx={{ color: '#ef4444' }} />
+                      </IconButton>
+                    </Box>
+                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <Box sx={{ display: 'flex', alignItems: 'center', border: '1px solid #e5e7eb', borderRadius: 1.5, bgcolor: '#fff' }}>
+                        <IconButton size="small" onClick={() => updateQty(item.id, -1)} sx={{ p: 0.5 }}>
+                          <Remove sx={{ fontSize: 18 }} />
+                        </IconButton>
+                        <Typography sx={{ px: 2, fontSize: 15, fontWeight: 700, minWidth: 30, textAlign: 'center' }}>
+                          {item.qty}
+                        </Typography>
+                        <IconButton size="small" onClick={() => updateQty(item.id, 1)} sx={{ p: 0.5 }}>
+                          <Add sx={{ fontSize: 18 }} />
+                        </IconButton>
+                      </Box>
+                      <Typography sx={{ fontSize: 16, fontWeight: 800, color: '#1f2937' }}>
+                        {formatCurrency(item.price * item.qty)}
                       </Typography>
                     </Box>
-                    <IconButton size="small" onClick={() => removeFromCart(item.id)}>
-                      <Delete fontSize="small" />
-                    </IconButton>
                   </Box>
-                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', bgcolor: '#fff', borderRadius: 1 }}>
-                      <IconButton size="small" onClick={() => updateQty(item.id, -1)}>
-                        <Remove fontSize="small" />
-                      </IconButton>
-                      <Typography sx={{ px: 2, fontSize: 14, fontWeight: 700 }}>{item.qty}</Typography>
-                      <IconButton size="small" onClick={() => updateQty(item.id, 1)}>
-                        <Add fontSize="small" />
-                      </IconButton>
-                    </Box>
-                    <Typography sx={{ fontSize: 14, fontWeight: 800 }}>
-                      {formatCurrency(item.price * item.qty)}
-                    </Typography>
-                  </Box>
-                </Box>
-              ))
+                ))}
+              </Box>
             )}
           </Box>
 
-          {/* Order Total */}
-          <Box sx={{ p: 2, bgcolor: '#1f2937', color: '#fff' }}>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-              <Typography sx={{ fontSize: 13 }}>Subtotal</Typography>
-              <Typography sx={{ fontSize: 13, fontWeight: 700 }}>{formatCurrency(subtotal)}</Typography>
-            </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
-              <Typography sx={{ fontSize: 13 }}>GST (5%)</Typography>
-              <Typography sx={{ fontSize: 13, fontWeight: 700 }}>{formatCurrency(tax)}</Typography>
-            </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
-              <Typography sx={{ fontSize: 16, fontWeight: 800 }}>Total</Typography>
-              <Typography sx={{ fontSize: 18, fontWeight: 900 }}>{formatCurrency(total)}</Typography>
-            </Box>
-
-            <Divider sx={{ borderColor: '#374151', my: 2 }} />
-
-            {/* Payment Method */}
-            <Typography sx={{ fontSize: 11, fontWeight: 700, mb: 1, color: '#9ca3af' }}>PAYMENT METHOD</Typography>
-            <RadioGroup row value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value)}>
-              {['Cash', 'UPI', 'Card', 'Due', 'E-Bill'].map(method => (
-                <Button
-                  key={method}
-                  size="small"
-                  variant={paymentMethod === method.toLowerCase() ? 'contained' : 'outlined'}
-                  onClick={() => setPaymentMethod(method.toLowerCase())}
-                  sx={{
-                    flex: 1,
-                    textTransform: 'none',
-                    fontSize: 11,
-                    fontWeight: 700,
-                    bgcolor: paymentMethod === method.toLowerCase() ? '#FF3D01' : 'transparent',
-                    color: paymentMethod === method.toLowerCase() ? '#fff' : '#9ca3af',
-                    borderColor: '#374151',
-                    mr: method === 'E-Bill' ? 0 : 1,
-                    '&:hover': {
-                      bgcolor: paymentMethod === method.toLowerCase() ? '#e63600' : '#374151'
-                    }
-                  }}
-                >
-                  {method}
-                </Button>
-              ))}
-            </RadioGroup>
-
-            {/* Action Buttons */}
-            <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: 1, my: 2 }}>
-              <Button
-                variant="outlined"
-                size="small"
-                onClick={() => handlePlaceOrder('hold')}
-                sx={{
-                  textTransform: 'none',
-                  borderColor: '#374151',
-                  color: '#9ca3af',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  py: 1,
-                  '&:hover': { borderColor: '#6b7280', bgcolor: '#374151' }
-                }}
-              >
-                <Restaurant fontSize="small" />
-                <Typography sx={{ fontSize: 10, mt: 0.5 }}>Hold</Typography>
-              </Button>
-              <Button
-                variant="outlined"
-                size="small"
-                onClick={() => handlePlaceOrder('draft')}
-                sx={{
-                  textTransform: 'none',
-                  borderColor: '#374151',
-                  color: '#9ca3af',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  py: 1,
-                  '&:hover': { borderColor: '#6b7280', bgcolor: '#374151' }
-                }}
-              >
-                <Restaurant fontSize="small" />
-                <Typography sx={{ fontSize: 10, mt: 0.5 }}>Draft</Typography>
-              </Button>
-              <Button
-                variant="outlined"
-                size="small"
-                sx={{
-                  textTransform: 'none',
-                  borderColor: '#374151',
-                  color: '#9ca3af',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  py: 1,
-                  '&:hover': { borderColor: '#6b7280', bgcolor: '#374151' }
-                }}
-              >
-                <Restaurant fontSize="small" />
-                <Typography sx={{ fontSize: 10, mt: 0.5 }}>KOT</Typography>
-              </Button>
-              <Button
-                variant="outlined"
-                size="small"
-                sx={{
-                  textTransform: 'none',
-                  borderColor: '#374151',
-                  color: '#9ca3af',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  py: 1,
-                  '&:hover': { borderColor: '#6b7280', bgcolor: '#374151' }
-                }}
-              >
-                <Restaurant fontSize="small" />
-                <Typography sx={{ fontSize: 9, mt: 0.5 }}>KOT Full</Typography>
-              </Button>
-            </Box>
-
-            <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
-              <Button
-                variant="outlined"
-                size="small"
-                fullWidth
-                sx={{
-                  textTransform: 'none',
-                  borderColor: '#374151',
-                  color: '#9ca3af',
-                  fontWeight: 700,
-                  '&:hover': { borderColor: '#6b7280', bgcolor: '#374151' }
-                }}
-              >
-                <Restaurant sx={{ mr: 0.5, fontSize: 16 }} />
-                Bill
-              </Button>
-              <Button
-                variant="outlined"
-                size="small"
-                fullWidth
-                sx={{
-                  textTransform: 'none',
-                  borderColor: '#374151',
-                  color: '#9ca3af',
-                  fontWeight: 700,
-                  '&:hover': { borderColor: '#6b7280', bgcolor: '#374151' }
-                }}
-              >
-                <Print sx={{ mr: 0.5, fontSize: 16 }} />
-                Bill & Print
-              </Button>
-            </Box>
-
-            <Button
-              variant="contained"
-              size="large"
-              fullWidth
-              onClick={() => handlePlaceOrder('complete')}
-              disabled={cart.length === 0}
-              sx={{
-                textTransform: 'none',
-                bgcolor: '#ef4444',
+          {/* Bottom Section */}
+          <Box>
+            {/* Order Total Bar */}
+            <Box 
+              sx={{ 
+                display: 'flex', 
+                justifyContent: 'space-between', 
+                alignItems: 'center',
+                bgcolor: '#1f2937',
                 color: '#fff',
-                fontWeight: 800,
-                fontSize: 16,
-                py: 1.5,
-                '&:hover': { bgcolor: '#dc2626' }
+                px: 3,
+                py: 2
               }}
             >
-              Bill & Pay
-            </Button>
+              <Typography sx={{ fontSize: 15, fontWeight: 600 }}>Order Total</Typography>
+              <Typography sx={{ fontSize: 20, fontWeight: 800 }}>
+                {formatCurrency(total)}
+              </Typography>
+            </Box>
+
+            {/* View Bill Button */}
+            <Box sx={{ px: 3, py: 2, bgcolor: '#fff' }}>
+              <Button
+                fullWidth
+                variant="contained"
+                endIcon={<Add sx={{ transform: 'rotate(90deg)' }} />}
+                onClick={() => {/* Toggle bill details */}}
+                sx={{
+                  textTransform: 'none',
+                  bgcolor: '#ef4444',
+                  color: '#fff',
+                  fontWeight: 700,
+                  fontSize: 15,
+                  py: 1.5,
+                  borderRadius: 2,
+                  '&:hover': { bgcolor: '#dc2626' }
+                }}
+              >
+                View Bill
+              </Button>
+            </Box>
+
+            {/* Action Buttons */}
+            <Box 
+              sx={{ 
+                display: 'flex',
+                bgcolor: '#1f2937',
+                borderTop: '1px solid #374151'
+              }}
+            >
+              <Button
+                fullWidth
+                onClick={() => {/* Generate bill */}}
+                sx={{
+                  textTransform: 'none',
+                  color: '#9ca3af',
+                  borderRight: '1px solid #374151',
+                  py: 2.5,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 0.5,
+                  '&:hover': { bgcolor: '#374151', color: '#fff' }
+                }}
+              >
+                <Description sx={{ fontSize: 24 }} />
+                <Typography sx={{ fontSize: 12, fontWeight: 600 }}>Bill</Typography>
+              </Button>
+              
+              <Button
+                fullWidth
+                onClick={() => {/* Print bill */}}
+                sx={{
+                  textTransform: 'none',
+                  color: '#9ca3af',
+                  borderRight: '1px solid #374151',
+                  py: 2.5,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 0.5,
+                  '&:hover': { bgcolor: '#374151', color: '#fff' }
+                }}
+              >
+                <Print sx={{ fontSize: 24 }} />
+                <Typography sx={{ fontSize: 12, fontWeight: 600 }}>Bill + Print</Typography>
+              </Button>
+              
+              <Button
+                fullWidth
+                onClick={() => handlePlaceOrder('complete')}
+                disabled={cart.length === 0}
+                sx={{
+                  textTransform: 'none',
+                  bgcolor: '#ef4444',
+                  color: '#fff',
+                  py: 2.5,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 1,
+                  fontWeight: 700,
+                  fontSize: 16,
+                  '&:hover': { bgcolor: '#dc2626' },
+                  '&:disabled': { bgcolor: '#6b7280', color: '#9ca3af' }
+                }}
+              >
+                <Box 
+                  sx={{ 
+                    width: 20, 
+                    height: 20, 
+                    borderRadius: '50%', 
+                    border: '2px solid #fff',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  ✓
+                </Box>
+                Bill & Pay
+              </Button>
+            </Box>
           </Box>
         </Box>
       </Box>
