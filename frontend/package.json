@@ -4,8 +4,8 @@
   "description": "Bhojpe POS SaaS Frontend",
   "type": "module",
   "scripts": {
-    "start": "vite --host 0.0.0.0 --port 3000",
-    "dev": "vite --host 0.0.0.0 --port 3000",
+    "start": "vite --host 0.0.0.0 --port 5000",
+    "dev": "vite --host 0.0.0.0 --port 5000",
     "build": "vite build",
     "preview": "vite preview"
   },

@@ -11,8 +11,19 @@ export default defineConfig({
   },
   server: {
     host: '0.0.0.0',
-    port: 3000,
-    allowedHosts: ['.emergentagent.com', '.emergentcf.cloud', 'localhost'],
+    port: 5000,
+    allowedHosts: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8001',
+        changeOrigin: true,
+      },
+      '/ws': {
+        target: 'ws://localhost:8001',
+        ws: true,
+        changeOrigin: true,
+      },
+    },
   },
   build: {
     outDir: 'dist',

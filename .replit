@@ -1,0 +1,48 @@
+modules = ["nodejs-20", "python-3.12", "web"]
+[agent]
+expertMode = true
+
+[nix]
+channel = "stable-25_05"
+packages = ["mongodb"]
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Start application"
+
+[[workflows.workflow]]
+name = "Start application"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd /home/runner/workspace && mongod --dbpath /home/runner/workspace/data/db --bind_ip 127.0.0.1 --port 27017 --fork --logpath /home/runner/workspace/data/mongod.log && cd backend && MONGO_URL=mongodb://localhost:27017 DB_NAME=bhojpe_pos python server.py &  sleep 3 && cd /home/runner/workspace/frontend && npm run dev"
+waitForPort = 5000
+
+[workflows.workflow.metadata]
+outputType = "webview"
+
+[[ports]]
+localPort = 3000
+externalPort = 3001
+
+[[ports]]
+localPort = 5000
+externalPort = 80
+
+[[ports]]
+localPort = 8001
+externalPort = 3000
+exposeLocalhost = true
+
+[deployment]
+deploymentTarget = "autoscale"
+run = ["bash", "-c", "mongod --dbpath /home/runner/workspace/data/db --bind_ip 127.0.0.1 --port 27017 --fork --logpath /home/runner/workspace/data/mongod.log && cd /home/runner/workspace/backend && MONGO_URL=mongodb://localhost:27017 DB_NAME=bhojpe_pos python server.py & sleep 3 && cd /home/runner/workspace/frontend && npm run dev"]
