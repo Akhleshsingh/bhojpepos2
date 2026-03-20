@@ -114,7 +114,7 @@ export default function BillSplitDialog({ open, onClose, order, onSplit }) {
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                       <Box sx={{ 
                         width: 8, height: 8, borderRadius: '50%', 
-                        bgcolor: item.type === 'veg' ? '#22c55e' : '#ef4444' 
+                        bgcolor: item.type === 'veg' ? '#186b35' : '#b81c1c' 
                       }} />
                       <Box>
                         <Typography fontWeight={600} fontSize={13}>{item.name}</Typography>

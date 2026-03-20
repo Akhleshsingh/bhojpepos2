@@ -47,7 +47,7 @@ function CustomerFormDialog({ open, onClose, editData, onSave }) {
   )
 }
 
-const AVATAR_COLORS = ['#FF3D01','#1a4fcc','#186b35','#7a5a00','#7e22ce','#c2610a','#b81c1c']
+const AVATAR_COLORS = ['#E8332A','#1a4fcc','#186b35','#7a5a00','#7e22ce','#c2610a','#b81c1c']
 
 export default function CustomersPage() {
   const dispatch = useDispatch()
@@ -106,7 +106,7 @@ export default function CustomersPage() {
       <Grid container spacing={2} sx={{ mb: 3 }}>
         {[
           { title: 'Total Customers', value: customers.length, icon: <People />, color: '#1a4fcc' },
-          { title: 'Total Orders', value: totalOrders, icon: <ShoppingCart />, color: '#FF3D01' },
+          { title: 'Total Orders', value: totalOrders, icon: <ShoppingCart />, color: '#E8332A' },
           { title: 'Total Revenue', value: formatCurrency(totalSpent), icon: <TrendingUp />, color: '#186b35' },
           { title: 'VIP Customers', value: vipCount, icon: <Star />, color: '#7a5a00' },
         ].map((s, i) => <Grid item xs={6} sm={3} key={i}><StatCard {...s} /></Grid>)}

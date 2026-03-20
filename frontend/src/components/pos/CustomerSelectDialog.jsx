@@ -10,7 +10,7 @@ import { showSnackbar } from '../../features/uiSlice'
 import { getInitials } from '../../utils/formatters'
 import { useDebounce } from '../../hooks/useDebounce'
 
-const COLORS = ['#FF3D01','#1a4fcc','#186b35','#7a5a00','#7e22ce','#c2610a']
+const COLORS = ['#E8332A','#1a4fcc','#186b35','#7a5a00','#7e22ce','#c2610a']
 
 export default function CustomerSelectDialog({ open, onClose, onSelect }) {
   const dispatch = useDispatch()

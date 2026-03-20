@@ -183,7 +183,7 @@ export default function PosPageNew() {
             py: 2
           }}
         >
-          <Typography sx={{ px: 2, pb: 1, fontSize: 11, fontWeight: 700, color: '#FF3D01', textTransform: 'uppercase' }}>
+          <Typography sx={{ px: 2, pb: 1, fontSize: 11, fontWeight: 700, color: '#E8332A', textTransform: 'uppercase' }}>
             Category
           </Typography>
           <Divider />
@@ -200,7 +200,7 @@ export default function PosPageNew() {
                   justifyContent: 'space-between',
                   cursor: 'pointer',
                   bgcolor: selectedCategory === cat.name ? '#fef3c7' : 'transparent',
-                  borderLeft: selectedCategory === cat.name ? '3px solid #FF3D01' : '3px solid transparent',
+                  borderLeft: selectedCategory === cat.name ? '3px solid #E8332A' : '3px solid transparent',
                   '&:hover': { bgcolor: '#f9fafb' }
                 }}
               >
@@ -249,10 +249,10 @@ export default function PosPageNew() {
                   variant={filterVeg === true ? 'contained' : 'outlined'}
                   onClick={() => setFilterVeg(filterVeg === true ? null : true)}
                   sx={{
-                    borderColor: '#22c55e',
-                    color: filterVeg === true ? '#fff' : '#22c55e',
-                    bgcolor: filterVeg === true ? '#22c55e' : 'transparent',
-                    '&:hover': { bgcolor: filterVeg === true ? '#16a34a' : 'rgba(34, 197, 94, 0.1)' }
+                    borderColor: '#186b35',
+                    color: filterVeg === true ? '#fff' : '#186b35',
+                    bgcolor: filterVeg === true ? '#186b35' : 'transparent',
+                    '&:hover': { bgcolor: filterVeg === true ? '#145028' : 'rgba(34, 197, 94, 0.1)' }
                   }}
                 >
                   🟢 Veg
@@ -262,10 +262,10 @@ export default function PosPageNew() {
                   variant={filterVeg === false ? 'contained' : 'outlined'}
                   onClick={() => setFilterVeg(filterVeg === false ? null : false)}
                   sx={{
-                    borderColor: '#ef4444',
-                    color: filterVeg === false ? '#fff' : '#ef4444',
-                    bgcolor: filterVeg === false ? '#ef4444' : 'transparent',
-                    '&:hover': { bgcolor: filterVeg === false ? '#dc2626' : 'rgba(239, 68, 68, 0.1)' }
+                    borderColor: '#b81c1c',
+                    color: filterVeg === false ? '#fff' : '#b81c1c',
+                    bgcolor: filterVeg === false ? '#b81c1c' : 'transparent',
+                    '&:hover': { bgcolor: filterVeg === false ? '#9a1717' : 'rgba(239, 68, 68, 0.1)' }
                   }}
                 >
                   🔴 Non-Veg
@@ -302,7 +302,7 @@ export default function PosPageNew() {
                         position: 'absolute',
                         top: 8,
                         left: 8,
-                        bgcolor: '#ef4444',
+                        bgcolor: '#b81c1c',
                         color: '#fff',
                         fontSize: 9,
                         fontWeight: 700,
@@ -326,7 +326,7 @@ export default function PosPageNew() {
                         width: 12,
                         height: 12,
                         borderRadius: '50%',
-                        border: `2px solid ${item.type === 'veg' ? '#22c55e' : '#ef4444'}`,
+                        border: `2px solid ${item.type === 'veg' ? '#186b35' : '#b81c1c'}`,
                         flexShrink: 0,
                         mt: 0.3
                       }}
@@ -336,7 +336,7 @@ export default function PosPageNew() {
                     </Typography>
                   </Box>
                   <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <Typography sx={{ fontSize: 14, fontWeight: 800, color: '#FF3D01' }}>
+                    <Typography sx={{ fontSize: 14, fontWeight: 800, color: '#E8332A' }}>
                       {formatCurrency(item.price)}
                     </Typography>
                     <IconButton size="small" sx={{ bgcolor: '#f3f4f6', '&:hover': { bgcolor: '#e5e7eb' } }}>
@@ -374,13 +374,13 @@ export default function PosPageNew() {
                   textTransform: 'uppercase',
                   fontSize: 12,
                   fontWeight: 700,
-                  color: orderType === type.key ? '#FF3D01' : '#9ca3af',
+                  color: orderType === type.key ? '#E8332A' : '#9ca3af',
                   borderRadius: 0,
-                  borderBottom: orderType === type.key ? '3px solid #FF3D01' : '3px solid transparent',
+                  borderBottom: orderType === type.key ? '3px solid #E8332A' : '3px solid transparent',
                   py: 1.5,
                   '&:hover': {
                     bgcolor: 'transparent',
-                    color: '#FF3D01'
+                    color: '#E8332A'
                   }
                 }}
               >
@@ -508,7 +508,7 @@ export default function PosPageNew() {
                               width: 10,
                               height: 10,
                               borderRadius: '50%',
-                              border: `2px solid ${item.type === 'veg' ? '#22c55e' : '#ef4444'}`,
+                              border: `2px solid ${item.type === 'veg' ? '#186b35' : '#b81c1c'}`,
                             }}
                           />
                           <Typography sx={{ fontSize: 14, fontWeight: 600, color: '#1f2937' }}>
@@ -520,7 +520,7 @@ export default function PosPageNew() {
                         </Typography>
                       </Box>
                       <IconButton size="small" onClick={() => removeFromCart(item.id)}>
-                        <Delete fontSize="small" sx={{ color: '#ef4444' }} />
+                        <Delete fontSize="small" sx={{ color: '#b81c1c' }} />
                       </IconButton>
                     </Box>
                     <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -574,13 +574,13 @@ export default function PosPageNew() {
                 onClick={() => {/* Toggle bill details */}}
                 sx={{
                   textTransform: 'none',
-                  bgcolor: '#ef4444',
+                  bgcolor: '#b81c1c',
                   color: '#fff',
                   fontWeight: 700,
                   fontSize: 15,
                   py: 1.5,
                   borderRadius: 2,
-                  '&:hover': { bgcolor: '#dc2626' }
+                  '&:hover': { bgcolor: '#9a1717' }
                 }}
               >
                 View Bill
@@ -637,7 +637,7 @@ export default function PosPageNew() {
                 disabled={cart.length === 0}
                 sx={{
                   textTransform: 'none',
-                  bgcolor: '#ef4444',
+                  bgcolor: '#b81c1c',
                   color: '#fff',
                   py: 2.5,
                   display: 'flex',
@@ -646,7 +646,7 @@ export default function PosPageNew() {
                   gap: 1,
                   fontWeight: 700,
                   fontSize: 16,
-                  '&:hover': { bgcolor: '#dc2626' },
+                  '&:hover': { bgcolor: '#9a1717' },
                   '&:disabled': { bgcolor: '#6b7280', color: '#9ca3af' }
                 }}
               >

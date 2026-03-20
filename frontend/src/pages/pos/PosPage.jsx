@@ -31,7 +31,7 @@ import apiClient from '../../services/apiClient'
 
 const VEG_COLORS = { veg: '#186b35', 'non-veg': '#b81c1c', egg: '#7a5a00' }
 const ORDER_TYPE_CFG = {
-  dine:     { label: 'Dine In',  icon: <TableRestaurant sx={{ fontSize: 14 }} />, color: '#FF3D01' },
+  dine:     { label: 'Dine In',  icon: <TableRestaurant sx={{ fontSize: 14 }} />, color: '#E8332A' },
   pickup:   { label: 'Pickup',   icon: <TakeoutDining   sx={{ fontSize: 14 }} />, color: '#1a4fcc' },
   delivery: { label: 'Delivery', icon: <LocalShipping   sx={{ fontSize: 14 }} />, color: '#186b35' },
 }

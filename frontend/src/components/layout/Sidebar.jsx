@@ -87,7 +87,7 @@ export default function Sidebar({ open }) {
         }}>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: '4px', flexShrink: 0 }}>
             {[24, 17, 11].map(w => (
-              <Box key={w} sx={{ width: w, height: 3.5, borderRadius: 1, bgcolor: '#FF3D01' }} />
+              <Box key={w} sx={{ width: w, height: 3.5, borderRadius: 1, bgcolor: '#E8332A' }} />
             ))}
           </Box>
           {open && (
@@ -130,11 +130,11 @@ export default function Sidebar({ open }) {
                         px: open ? 1.5 : 1,
                         py: 1,
                         minHeight: 42,
-                        bgcolor: active ? '#FF3D01' : 'transparent',
+                        bgcolor: active ? '#E8332A' : 'transparent',
                         color: active ? '#fff' : 'rgba(255,255,255,0.5)',
                         justifyContent: open ? 'flex-start' : 'center',
                         '&:hover': {
-                          bgcolor: active ? '#dd3400' : 'rgba(255,255,255,0.07)',
+                          bgcolor: active ? '#c8271f' : 'rgba(255,255,255,0.07)',
                           color: active ? '#fff' : 'rgba(255,255,255,0.9)',
                         },
                         transition: 'all 0.14s',
@@ -186,7 +186,7 @@ export default function Sidebar({ open }) {
           gap: open ? 1.5 : 0,
           justifyContent: open ? 'flex-start' : 'center',
         }}>
-          <Avatar sx={{ width: 36, height: 36, bgcolor: roleInfo.color || '#FF3D01', fontSize: 13, fontWeight: 800, flexShrink: 0 }}>
+          <Avatar sx={{ width: 36, height: 36, bgcolor: roleInfo.color || '#E8332A', fontSize: 13, fontWeight: 800, flexShrink: 0 }}>
             {getInitials(user?.name || 'U')}
           </Avatar>
           {open && (
@@ -210,7 +210,7 @@ export default function Sidebar({ open }) {
               </Box>
               <Tooltip title="Logout">
                 <IconButton size="small" onClick={handleLogout}
-                  sx={{ color: 'rgba(255,255,255,0.35)', '&:hover': { color: '#FF3D01', bgcolor: 'rgba(255,61,1,0.1)' } }}
+                  sx={{ color: 'rgba(255,255,255,0.35)', '&:hover': { color: '#E8332A', bgcolor: 'rgba(255,61,1,0.1)' } }}
                   data-testid="logout-btn">
                   <Logout fontSize="small" />
                 </IconButton>

@@ -12,15 +12,15 @@ import { showSnackbar } from '../../features/uiSlice'
 import apiClient from '../../services/apiClient'
 
 const STATUS_CONFIG = {
-  pending: { color: '#FF3D01', label: 'NEW', bgColor: 'rgba(255,61,1,0.1)' },
-  preparing: { color: '#f59e0b', label: 'COOKING', bgColor: 'rgba(245,158,11,0.1)' },
-  ready: { color: '#10b981', label: 'READY', bgColor: 'rgba(16,185,129,0.1)' },
+  pending: { color: '#E8332A', label: 'NEW', bgColor: 'rgba(255,61,1,0.1)' },
+  preparing: { color: '#c2610a', label: 'COOKING', bgColor: 'rgba(245,158,11,0.1)' },
+  ready: { color: '#186b35', label: 'READY', bgColor: 'rgba(16,185,129,0.1)' },
   served: { color: '#6b7280', label: 'SERVED', bgColor: 'rgba(107,114,128,0.1)' },
 }
 
 const PRIORITY_CONFIG = {
-  urgent: { color: '#dc2626', icon: <LocalFireDepartment /> },
-  high: { color: '#f59e0b', icon: <LocalFireDepartment /> },
+  urgent: { color: '#9a1717', icon: <LocalFireDepartment /> },
+  high: { color: '#c2610a', icon: <LocalFireDepartment /> },
   normal: { color: '#3b82f6', icon: null },
 }
 
@@ -110,7 +110,7 @@ function KOTCard({ kot, onStatusUpdate }) {
                 <Box 
                   sx={{ 
                     width: 8, height: 8, borderRadius: '50%', 
-                    bgcolor: item.type === 'veg' ? '#22c55e' : '#ef4444' 
+                    bgcolor: item.type === 'veg' ? '#186b35' : '#b81c1c' 
                   }} 
                 />
                 <Typography fontWeight={600} fontSize={14}>{item.name}</Typography>
@@ -253,9 +253,9 @@ export default function KitchenPage() {
       {/* Stats */}
       <Grid container spacing={2} sx={{ mb: 3 }}>
         {[
-          { label: 'New Orders', count: pendingKots.length, color: '#FF3D01' },
-          { label: 'Cooking', count: preparingKots.length, color: '#f59e0b' },
-          { label: 'Ready to Serve', count: readyKots.length, color: '#10b981' },
+          { label: 'New Orders', count: pendingKots.length, color: '#E8332A' },
+          { label: 'Cooking', count: preparingKots.length, color: '#c2610a' },
+          { label: 'Ready to Serve', count: readyKots.length, color: '#186b35' },
         ].map(stat => (
           <Grid item xs={4} key={stat.label}>
             <Box sx={{ 

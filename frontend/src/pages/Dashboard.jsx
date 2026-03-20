@@ -21,7 +21,7 @@ const revenueData = [
 ]
 
 const categoryData = [
-  { name: 'Main Course', value: 38, color: '#FF3D01' },
+  { name: 'Main Course', value: 38, color: '#E8332A' },
   { name: 'Beverages', value: 22, color: '#1a4fcc' },
   { name: 'Starters', value: 18, color: '#186b35' },
   { name: 'Desserts', value: 12, color: '#7a5a00' },
@@ -57,7 +57,7 @@ export default function Dashboard() {
       {/* Stats */}
       <Grid container spacing={2.5} sx={{ mb: 3 }}>
         {[
-          { title: "Today's Revenue", value: formatCurrency(todayRevenue || 24800), icon: <AttachMoney />, color: '#FF3D01', trend: 'up', trendValue: '+12.5%', subtitle: 'vs yesterday' },
+          { title: "Today's Revenue", value: formatCurrency(todayRevenue || 24800), icon: <AttachMoney />, color: '#E8332A', trend: 'up', trendValue: '+12.5%', subtitle: 'vs yesterday' },
           { title: 'Active Orders', value: pendingOrders || 8, icon: <Receipt />, color: '#1a4fcc', subtitle: 'In progress' },
           { title: "Today's Reservations", value: todayRes || 12, icon: <BookOnline />, color: '#186b35', trend: 'up', trendValue: '+3', subtitle: 'vs last week' },
           { title: 'Active Staff', value: activeStaff || 6, icon: <People />, color: '#7a5a00', subtitle: 'On shift now' },
@@ -84,15 +84,15 @@ export default function Dashboard() {
                 <AreaChart data={revenueData}>
                   <defs>
                     <linearGradient id="revGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#FF3D01" stopOpacity={0.15} />
-                      <stop offset="95%" stopColor="#FF3D01" stopOpacity={0} />
+                      <stop offset="5%" stopColor="#E8332A" stopOpacity={0.15} />
+                      <stop offset="95%" stopColor="#E8332A" stopOpacity={0} />
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--mui-palette-divider)" />
                   <XAxis dataKey="day" tick={{ fontSize: 12, fontWeight: 600 }} />
                   <YAxis tick={{ fontSize: 12 }} tickFormatter={v => `₹${(v/1000).toFixed(0)}k`} />
                   <Tooltip formatter={(v) => [formatCurrency(v), 'Revenue']} contentStyle={{ borderRadius: 10, fontWeight: 600 }} />
-                  <Area type="monotone" dataKey="revenue" stroke="#FF3D01" strokeWidth={2.5} fill="url(#revGrad)" dot={{ r: 4, fill: '#FF3D01' }} />
+                  <Area type="monotone" dataKey="revenue" stroke="#E8332A" strokeWidth={2.5} fill="url(#revGrad)" dot={{ r: 4, fill: '#E8332A' }} />
                 </AreaChart>
               </ResponsiveContainer>
             </CardContent>

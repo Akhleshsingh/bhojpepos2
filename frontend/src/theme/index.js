@@ -1,7 +1,8 @@
 import { createTheme } from '@mui/material/styles'
 
-const brandColor = '#FF3D01'
-const brandDark = '#dd3400'
+// Bhojpe POSS Design System
+const brandColor = '#E8332A'
+const brandDark = '#c8271f'
 
 // Shared design tokens
 const tokens = {
@@ -15,7 +16,7 @@ export const getTheme = (mode) => createTheme({
     primary: {
       main: brandColor,
       dark: brandDark,
-      light: '#ff6633',
+      light: '#ff5545',
       contrastText: '#fff',
     },
     success: { main: '#186b35' },
@@ -23,14 +24,14 @@ export const getTheme = (mode) => createTheme({
     error: { main: '#b81c1c' },
     info: { main: '#1a4fcc' },
     background: {
-      default: mode === 'light' ? '#f8f5f1' : '#0f1117',
+      default: mode === 'light' ? '#f9f4ef' : '#0f1117',
       paper: mode === 'light' ? '#ffffff' : '#161b27',
     },
-    divider: mode === 'light' ? '#e4dbd0' : 'rgba(255,255,255,0.08)',
+    divider: mode === 'light' ? '#e8ddd5' : 'rgba(255,255,255,0.08)',
     text: {
-      primary: mode === 'light' ? '#24201c' : '#f0ede9',
-      secondary: mode === 'light' ? '#68594a' : 'rgba(255,255,255,0.55)',
-      disabled: mode === 'light' ? '#a4927e' : 'rgba(255,255,255,0.3)',
+      primary: mode === 'light' ? '#1a1410' : '#f0ede9',
+      secondary: mode === 'light' ? '#6b5c4e' : 'rgba(255,255,255,0.55)',
+      disabled: mode === 'light' ? '#a8978a' : 'rgba(255,255,255,0.3)',
     },
   },
   typography: {

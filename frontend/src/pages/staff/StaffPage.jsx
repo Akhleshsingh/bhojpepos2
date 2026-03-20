@@ -17,7 +17,7 @@ import StatCard from '../../components/common/StatCard'
 import { getInitials, formatCurrency, formatDate } from '../../utils/formatters'
 import { ROLES, SHIFTS } from '../../utils/constants'
 
-const ROLE_COLORS = { Manager: '#FF3D01', Waiter: '#1a4fcc', Chef: '#7e22ce', Cashier: '#7a5a00', Captain: '#186b35' }
+const ROLE_COLORS = { Manager: '#E8332A', Waiter: '#1a4fcc', Chef: '#7e22ce', Cashier: '#7a5a00', Captain: '#186b35' }
 const emptyForm = { name: '', email: '', phone: '', role: 'Waiter', shift: 'Morning', salary: '', status: 'active', color: '#1a4fcc' }
 
 function StaffFormDialog({ open, onClose, editData, onSave }) {
@@ -222,7 +222,7 @@ export default function StaffPage() {
                 <TableRow key={member.id} hover>
                   <TableCell>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                      <Avatar sx={{ width: 38, height: 38, bgcolor: member.color || '#FF3D01', fontSize: 13, fontWeight: 800 }}>
+                      <Avatar sx={{ width: 38, height: 38, bgcolor: member.color || '#E8332A', fontSize: 13, fontWeight: 800 }}>
                         {getInitials(member.name)}
                       </Avatar>
                       <Box>

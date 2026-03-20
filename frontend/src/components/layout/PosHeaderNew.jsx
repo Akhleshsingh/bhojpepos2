@@ -34,7 +34,7 @@ export default function PosHeaderNew() {
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
         {/* Logo */}
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-          <IconButton size="small" sx={{ color: '#FF3D01' }}>
+          <IconButton size="small" sx={{ color: '#E8332A' }}>
             <MenuIcon />
           </IconButton>
           <Typography 
@@ -73,15 +73,15 @@ export default function PosHeaderNew() {
             onClick={() => navigate('/tables')}
             sx={{
               textTransform: 'none',
-              bgcolor: isActive('/tables') ? '#FF3D01' : '#fff',
-              color: isActive('/tables') ? '#fff' : '#374151',
-              border: isActive('/tables') ? 'none' : '1px solid #d1d5db',
+              bgcolor: isActive('/tables') ? '#E8332A' : '#fff',
+              color: isActive('/tables') ? '#fff' : '#6b5c4e',
+              border: isActive('/tables') ? 'none' : '1px solid #e8ddd5',
               fontWeight: 600,
               fontSize: 13,
               borderRadius: 2,
               px: 2,
               '&:hover': {
-                bgcolor: isActive('/tables') ? '#e63600' : '#f9fafb'
+                bgcolor: isActive('/tables') ? '#c8271f' : '#f9fafb'
               }
             }}
           >
@@ -95,13 +95,13 @@ export default function PosHeaderNew() {
             onClick={() => navigate('/pos')}
             sx={{
               textTransform: 'none',
-              bgcolor: '#22c55e',
+              bgcolor: '#186b35',
               color: '#fff',
               fontWeight: 600,
               fontSize: 13,
               borderRadius: 2,
               px: 2,
-              '&:hover': { bgcolor: '#16a34a' }
+              '&:hover': { bgcolor: '#145028' }
             }}
           >
             New Order
@@ -145,7 +145,7 @@ export default function PosHeaderNew() {
           sx={{ 
             width: 32, 
             height: 32, 
-            bgcolor: '#FF3D01', 
+            bgcolor: '#E8332A', 
             fontSize: 13, 
             fontWeight: 700,
             cursor: 'pointer'

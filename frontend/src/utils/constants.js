@@ -8,7 +8,7 @@ export const MENU_CATEGORIES = ['Starters', 'Main Course', 'Rice & Biryani', 'Br
 export const TABLES = Array.from({ length: 20 }, (_, i) => `T${i + 1}`)
 
 export const ROLE_COLORS = {
-  admin: '#FF3D01', manager: '#FF3D01', cashier: '#7a5a00',
+  admin: '#E8332A', manager: '#E8332A', cashier: '#7a5a00',
   waiter: '#1a4fcc', chef: '#7e22ce', captain: '#186b35',
 }
 

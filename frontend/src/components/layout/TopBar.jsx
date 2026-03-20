@@ -56,7 +56,7 @@ export default function TopBar() {
 
         {/* Avatar menu */}
         <Tooltip title={user?.name}>
-          <Avatar onClick={e => setAnchorEl(e.currentTarget)} sx={{ width: 34, height: 34, bgcolor: user?.color || '#FF3D01', fontSize: 13, fontWeight: 800, cursor: 'pointer' }}>
+          <Avatar onClick={e => setAnchorEl(e.currentTarget)} sx={{ width: 34, height: 34, bgcolor: user?.color || '#E8332A', fontSize: 13, fontWeight: 800, cursor: 'pointer' }}>
             {getInitials(user?.name || 'U')}
           </Avatar>
         </Tooltip>

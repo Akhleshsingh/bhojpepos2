@@ -98,7 +98,7 @@ const ReceiptContent = forwardRef(({ receipt, showQR = true }, ref) => {
             <Box 
               sx={{ 
                 width: 6, height: 6, borderRadius: '50%', flexShrink: 0,
-                bgcolor: item.type === 'veg' ? '#22c55e' : '#ef4444' 
+                bgcolor: item.type === 'veg' ? '#186b35' : '#b81c1c' 
               }} 
             />
             <Typography sx={{ fontSize: 11, lineHeight: 1.2 }} noWrap>

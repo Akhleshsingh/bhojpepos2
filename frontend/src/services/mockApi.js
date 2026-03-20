@@ -15,7 +15,7 @@ export const setupMockApi = () => {
   mock.onPost('auth/login').reply((config) => {
     const { username, password, role } = JSON.parse(config.data)
     const users = {
-      admin: { id: 'U001', name: 'Admin User', role: 'admin', email: 'admin@bhojpe.com', color: '#FF3D01', shift: 'Full' },
+      admin: { id: 'U001', name: 'Admin User', role: 'admin', email: 'admin@bhojpe.com', color: '#E8332A', shift: 'Full' },
       manager: { id: 'U002', name: 'Sanjay Kumar', role: 'manager', email: 'manager@bhojpe.com', color: '#1a4fcc', shift: 'Morning' },
       cashier: { id: 'U003', name: 'Pooja Verma', role: 'cashier', email: 'cashier@bhojpe.com', color: '#186b35', shift: 'Full' },
       waiter: { id: 'U004', name: 'Raju Singh', role: 'waiter', email: 'waiter@bhojpe.com', color: '#7a5a00', shift: 'Evening' },

@@ -20,11 +20,11 @@ import apiClient from '../../services/apiClient'
 
 // Status colors matching the screenshot
 const STATUS_CONFIG = {
-  available: { bg: '#f5f5f5', border: '#e5e7eb', dot: '#22c55e', label: 'Available', textColor: '#6b7280' },
-  running: { bg: '#dcfce7', border: '#bbf7d0', dot: '#ef4444', label: 'Running', textColor: '#166534' },
-  occupied: { bg: '#dcfce7', border: '#bbf7d0', dot: '#ef4444', label: 'Running', textColor: '#166534' },
+  available: { bg: '#f5f5f5', border: '#e5e7eb', dot: '#186b35', label: 'Available', textColor: '#6b7280' },
+  running: { bg: '#dcfce7', border: '#bbf7d0', dot: '#b81c1c', label: 'Running', textColor: '#166534' },
+  occupied: { bg: '#dcfce7', border: '#bbf7d0', dot: '#b81c1c', label: 'Running', textColor: '#166534' },
   reserved: { bg: '#fce7f3', border: '#fbcfe8', dot: '#f97316', label: 'Reserved', textColor: '#9d174d' },
-  billready: { bg: '#fef9c3', border: '#fef08a', dot: '#22c55e', label: 'Bill Ready', textColor: '#854d0e' },
+  billready: { bg: '#fef9c3', border: '#fef08a', dot: '#186b35', label: 'Bill Ready', textColor: '#854d0e' },
   cleaning: { bg: '#e0e7ff', border: '#c7d2fe', dot: '#6366f1', label: 'Cleaning', textColor: '#4338ca' },
 }
 
@@ -71,7 +71,7 @@ function QuickViewPopover({ anchorEl, onClose, tableId, tableName }) {
       }}
     >
       {/* Header */}
-      <Box sx={{ p: 2, bgcolor: '#FF3D01', color: '#fff' }}>
+      <Box sx={{ p: 2, bgcolor: '#E8332A', color: '#fff' }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Typography fontWeight={800} fontSize={18}>{tableName}</Typography>
           {details?.summary && (
@@ -133,7 +133,7 @@ function QuickViewPopover({ anchorEl, onClose, tableId, tableName }) {
               {order.items?.slice(0, 5).map((item, i) => (
                 <Box key={i} sx={{ display: 'flex', justifyContent: 'space-between', py: 0.3 }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                    <Box sx={{ width: 6, height: 6, borderRadius: '50%', bgcolor: item.type === 'veg' ? '#22c55e' : '#ef4444' }} />
+                    <Box sx={{ width: 6, height: 6, borderRadius: '50%', bgcolor: item.type === 'veg' ? '#186b35' : '#b81c1c' }} />
                     <Typography fontSize={12}>{item.qty}x {item.name}</Typography>
                   </Box>
                   <Typography fontSize={12} fontWeight={600}>{formatCurrency(item.price * item.qty)}</Typography>
@@ -205,7 +205,7 @@ function TableCard({ table, onClick, onSelect, isSelected, selectionMode }) {
           width: 145,
           minHeight: 135,
           bgcolor: config.bg,
-          border: isSelected ? '3px solid #FF3D01' : `1.5px solid ${config.border}`,
+          border: isSelected ? '3px solid #E8332A' : `1.5px solid ${config.border}`,
           borderRadius: 2,
           p: 1.5,
           cursor: 'pointer',
@@ -245,7 +245,7 @@ function TableCard({ table, onClick, onSelect, isSelected, selectionMode }) {
             {config.label}
           </Typography>
           {hasOrder && elapsedMinutes > 0 && (
-            <Typography sx={{ fontSize: 11, color: '#FF3D01', fontWeight: 700, ml: 'auto' }}>
+            <Typography sx={{ fontSize: 11, color: '#E8332A', fontWeight: 700, ml: 'auto' }}>
               {formatTime(elapsedMinutes)}
             </Typography>
           )}
@@ -254,7 +254,7 @@ function TableCard({ table, onClick, onSelect, isSelected, selectionMode }) {
         {/* Order Details */}
         {hasOrder && (
           <>
-            <Typography sx={{ fontSize: 11, color: '#FF3D01', fontWeight: 600, mt: 0.5 }}>
+            <Typography sx={{ fontSize: 11, color: '#E8332A', fontWeight: 600, mt: 0.5 }}>
               {table.itemCount || 3} items • {formatCurrency(table.orderAmount || 420)}
             </Typography>
             
@@ -270,7 +270,7 @@ function TableCard({ table, onClick, onSelect, isSelected, selectionMode }) {
                     Bill
                   </Button>
                   <Button size="small" variant="contained"
-                    sx={{ minWidth: 0, px: 1, py: 0.3, fontSize: 10, fontWeight: 700, bgcolor: '#22c55e', '&:hover': { bgcolor: '#16a34a' } }}>
+                    sx={{ minWidth: 0, px: 1, py: 0.3, fontSize: 10, fontWeight: 700, bgcolor: '#186b35', '&:hover': { bgcolor: '#145028' } }}>
                     Pay
                   </Button>
                 </>
@@ -285,7 +285,7 @@ function TableCard({ table, onClick, onSelect, isSelected, selectionMode }) {
                     Bill
                   </Button>
                   <Button size="small" variant="contained" onClick={(e) => { e.stopPropagation() }}
-                    sx={{ minWidth: 0, px: 0.8, py: 0.2, fontSize: 10, fontWeight: 700, bgcolor: '#22c55e', '&:hover': { bgcolor: '#16a34a' } }}>
+                    sx={{ minWidth: 0, px: 0.8, py: 0.2, fontSize: 10, fontWeight: 700, bgcolor: '#186b35', '&:hover': { bgcolor: '#145028' } }}>
                     Pay
                   </Button>
                   <Tooltip title="Call Waiter">
@@ -309,7 +309,7 @@ function TableCard({ table, onClick, onSelect, isSelected, selectionMode }) {
                         width: 22, 
                         height: 22, 
                         bgcolor: '#fef3c7', 
-                        color: '#f59e0b',
+                        color: '#c2610a',
                         ml: 0.5,
                         '&:hover': { bgcolor: '#fde68a' }
                       }}
@@ -613,7 +613,7 @@ export default function TablesPage() {
               Delivery
             </Button>
             <Button variant="contained" size="small" startIcon={<Add />} onClick={() => setAddDialog(true)}
-              sx={{ borderRadius: 2, textTransform: 'none', fontWeight: 700, bgcolor: '#FF3D01', '&:hover': { bgcolor: '#e63600' } }}
+              sx={{ borderRadius: 2, textTransform: 'none', fontWeight: 700, bgcolor: '#E8332A', '&:hover': { bgcolor: '#e63600' } }}
               data-testid="add-table-btn">
               Add Table
             </Button>
@@ -658,7 +658,7 @@ export default function TablesPage() {
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               <Button size="small" variant={selectionMode ? 'contained' : 'outlined'} startIcon={<SwapHoriz fontSize="small" />}
                 onClick={() => { setSelectionMode(!selectionMode); if (selectionMode) { setSelectedTables([]); } setKotMoveDialog(!selectionMode ? false : true) }}
-                sx={{ borderRadius: 2, textTransform: 'none', fontWeight: 600, fontSize: 11, borderColor: '#e5e7eb', color: selectionMode ? '#fff' : '#374151', bgcolor: selectionMode ? '#FF3D01' : 'transparent', px: 1.5 }}
+                sx={{ borderRadius: 2, textTransform: 'none', fontWeight: 600, fontSize: 11, borderColor: '#e5e7eb', color: selectionMode ? '#fff' : '#374151', bgcolor: selectionMode ? '#E8332A' : 'transparent', px: 1.5 }}
                 data-testid="kot-move-btn">
                 Items/KOT Move
               </Button>
@@ -673,13 +673,13 @@ export default function TablesPage() {
                 }}
                 sx={{ borderRadius: 2, textTransform: 'none', fontWeight: 600, fontSize: 11, borderColor: '#e5e7eb', 
                   color: (selectionMode && selectedTables.length >= 2) ? '#fff' : '#374151', 
-                  bgcolor: (selectionMode && selectedTables.length >= 2) ? '#22c55e' : 'transparent', px: 1.5 }}
+                  bgcolor: (selectionMode && selectedTables.length >= 2) ? '#186b35' : 'transparent', px: 1.5 }}
                 data-testid="merge-table-btn">
                 {selectionMode && selectedTables.length >= 2 ? `Merge ${selectedTables.length} Tables` : 'Merge Table'}
               </Button>
               {selectionMode && (
                 <Button size="small" variant="outlined" onClick={() => { setSelectionMode(false); setSelectedTables([]) }}
-                  sx={{ borderRadius: 2, textTransform: 'none', fontWeight: 600, fontSize: 11, borderColor: '#ef4444', color: '#ef4444', px: 1.5 }}>
+                  sx={{ borderRadius: 2, textTransform: 'none', fontWeight: 600, fontSize: 11, borderColor: '#b81c1c', color: '#b81c1c', px: 1.5 }}>
                   Cancel
                 </Button>
               )}
@@ -695,7 +695,7 @@ export default function TablesPage() {
             </Typography>
             {selectedTables.length >= 2 && (
               <Button variant="contained" size="small" onClick={() => setMergeDialog(true)}
-                sx={{ bgcolor: '#22c55e', '&:hover': { bgcolor: '#16a34a' } }}>
+                sx={{ bgcolor: '#186b35', '&:hover': { bgcolor: '#145028' } }}>
                 Proceed to Merge
               </Button>
             )}

@@ -110,7 +110,7 @@ export default function OrdersPage() {
   }
 
   const stats = [
-    { title: 'Total Orders', value: orders.length, icon: <Receipt />, color: '#FF3D01' },
+    { title: 'Total Orders', value: orders.length, icon: <Receipt />, color: '#E8332A' },
     { title: 'Pending', value: orders.filter(o => o.status === 'pending').length, icon: <Receipt />, color: '#7a5a00' },
     { title: 'Preparing', value: orders.filter(o => o.status === 'preparing').length, icon: <Receipt />, color: '#1a4fcc' },
     { title: 'Completed', value: orders.filter(o => o.status === 'completed').length, icon: <CheckCircle />, color: '#186b35' },

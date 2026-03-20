@@ -66,9 +66,9 @@ export default function WaiterRequestsPage() {
 
   const getUrgencyColor = (urgency) => {
     switch(urgency) {
-      case 'high': return '#ef4444'
-      case 'normal': return '#f59e0b'
-      case 'low': return '#10b981'
+      case 'high': return '#b81c1c'
+      case 'normal': return '#c2610a'
+      case 'low': return '#186b35'
       default: return '#6b7280'
     }
   }
@@ -111,7 +111,7 @@ export default function WaiterRequestsPage() {
           <Card sx={{ bgcolor: '#fef3c7' }}>
             <CardContent>
               <Typography sx={{ fontSize: 13, color: '#6b7280', mb: 1 }}>Pending</Typography>
-              <Typography variant="h4" sx={{ fontWeight: 800, color: '#f59e0b' }}>{stats.pending}</Typography>
+              <Typography variant="h4" sx={{ fontWeight: 800, color: '#c2610a' }}>{stats.pending}</Typography>
             </CardContent>
           </Card>
         </Grid>
@@ -119,7 +119,7 @@ export default function WaiterRequestsPage() {
           <Card sx={{ bgcolor: '#fee2e2' }}>
             <CardContent>
               <Typography sx={{ fontSize: 13, color: '#6b7280', mb: 1 }}>High Urgency</Typography>
-              <Typography variant="h4" sx={{ fontWeight: 800, color: '#ef4444' }}>{stats.high_urgency}</Typography>
+              <Typography variant="h4" sx={{ fontWeight: 800, color: '#b81c1c' }}>{stats.high_urgency}</Typography>
             </CardContent>
           </Card>
         </Grid>
@@ -127,7 +127,7 @@ export default function WaiterRequestsPage() {
           <Card sx={{ bgcolor: '#d1fae5' }}>
             <CardContent>
               <Typography sx={{ fontSize: 13, color: '#6b7280', mb: 1 }}>Resolved Today</Typography>
-              <Typography variant="h4" sx={{ fontWeight: 800, color: '#10b981' }}>{stats.resolved}</Typography>
+              <Typography variant="h4" sx={{ fontWeight: 800, color: '#186b35' }}>{stats.resolved}</Typography>
             </CardContent>
           </Card>
         </Grid>
@@ -229,7 +229,7 @@ export default function WaiterRequestsPage() {
                           variant="contained"
                           startIcon={<CheckCircle />}
                           onClick={() => handleResolve(request.id)}
-                          sx={{ bgcolor: '#22c55e', '&:hover': { bgcolor: '#16a34a' } }}
+                          sx={{ bgcolor: '#186b35', '&:hover': { bgcolor: '#145028' } }}
                         >
                           Resolve
                         </Button>

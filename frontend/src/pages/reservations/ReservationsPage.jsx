@@ -142,7 +142,7 @@ export default function ReservationsPage() {
           variant="contained"
           startIcon={<Add />}
           onClick={() => handleOpenDialog()}
-          sx={{ bgcolor: '#22c55e', '&:hover': { bgcolor: '#16a34a' } }}
+          sx={{ bgcolor: '#186b35', '&:hover': { bgcolor: '#145028' } }}
         >
           New Reservation
         </Button>
@@ -162,7 +162,7 @@ export default function ReservationsPage() {
           <Card sx={{ bgcolor: '#fef3c7' }}>
             <CardContent>
               <Typography sx={{ fontSize: 13, color: '#6b7280', mb: 1 }}>Pending</Typography>
-              <Typography variant="h4" sx={{ fontWeight: 800, color: '#f59e0b' }}>{stats.pending}</Typography>
+              <Typography variant="h4" sx={{ fontWeight: 800, color: '#c2610a' }}>{stats.pending}</Typography>
             </CardContent>
           </Card>
         </Grid>
@@ -170,7 +170,7 @@ export default function ReservationsPage() {
           <Card sx={{ bgcolor: '#d1fae5' }}>
             <CardContent>
               <Typography sx={{ fontSize: 13, color: '#6b7280', mb: 1 }}>Confirmed</Typography>
-              <Typography variant="h4" sx={{ fontWeight: 800, color: '#10b981' }}>{stats.confirmed}</Typography>
+              <Typography variant="h4" sx={{ fontWeight: 800, color: '#186b35' }}>{stats.confirmed}</Typography>
             </CardContent>
           </Card>
         </Grid>
@@ -178,7 +178,7 @@ export default function ReservationsPage() {
           <Card sx={{ bgcolor: '#fee2e2' }}>
             <CardContent>
               <Typography sx={{ fontSize: 13, color: '#6b7280', mb: 1 }}>Cancelled</Typography>
-              <Typography variant="h4" sx={{ fontWeight: 800, color: '#ef4444' }}>{stats.cancelled}</Typography>
+              <Typography variant="h4" sx={{ fontWeight: 800, color: '#b81c1c' }}>{stats.cancelled}</Typography>
             </CardContent>
           </Card>
         </Grid>

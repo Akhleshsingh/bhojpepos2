@@ -1,7 +1,7 @@
 import { Box, Card, Typography } from '@mui/material'
 import { TrendingUp, TrendingDown } from '@mui/icons-material'
 
-export default function StatCard({ title, value, subtitle, icon, color = '#FF3D01', trend, trendValue }) {
+export default function StatCard({ title, value, subtitle, icon, color = '#E8332A', trend, trendValue }) {
   const isPositive = trend === 'up'
   return (
     <Card sx={{ p: 2.5, height: '100%' }}>

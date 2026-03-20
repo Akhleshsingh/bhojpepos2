@@ -13,8 +13,8 @@ export const PERMISSIONS = {
 }
 
 export const ROLES = {
-  super_admin: { name: 'Super Admin', level: 100, color: '#FF3D01' },
-  admin: { name: 'Admin', level: 90, color: '#FF3D01' },
+  super_admin: { name: 'Super Admin', level: 100, color: '#E8332A' },
+  admin: { name: 'Admin', level: 90, color: '#E8332A' },
   manager: { name: 'Manager', level: 70, color: '#1a4fcc' },
   cashier: { name: 'Cashier', level: 50, color: '#186b35' },
   waiter: { name: 'Waiter', level: 30, color: '#7a5a00' },

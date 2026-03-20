@@ -46,10 +46,10 @@ export default function PosHeader({ showTableView = true }) {
         >
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
             {[20, 14, 8].map((w, i) => (
-              <Box key={i} sx={{ width: w, height: 3, borderRadius: 1, bgcolor: '#FF3D01' }} />
+              <Box key={i} sx={{ width: w, height: 3, borderRadius: 1, bgcolor: '#E8332A' }} />
             ))}
           </Box>
-          <Typography sx={{ fontSize: 22, fontWeight: 900, color: '#FF3D01', letterSpacing: '-0.5px' }}>
+          <Typography sx={{ fontSize: 22, fontWeight: 900, color: '#E8332A', letterSpacing: '-0.5px' }}>
             Bhojpe
           </Typography>
         </Box>
@@ -91,11 +91,11 @@ export default function PosHeader({ showTableView = true }) {
                 fontSize: 13,
                 px: 2,
                 py: 0.7,
-                borderColor: isActive('/tables') ? '#FF3D01' : '#e5e7eb',
+                borderColor: isActive('/tables') ? '#E8332A' : '#e5e7eb',
                 color: isActive('/tables') ? '#fff' : '#374151',
-                bgcolor: isActive('/tables') ? '#FF3D01' : 'transparent',
+                bgcolor: isActive('/tables') ? '#E8332A' : 'transparent',
                 '&:hover': { 
-                  borderColor: isActive('/tables') ? '#FF3D01' : '#FF3D01', 
+                  borderColor: isActive('/tables') ? '#E8332A' : '#E8332A', 
                   bgcolor: isActive('/tables') ? '#e63600' : 'rgba(255,61,1,0.04)' 
                 }
               }}
@@ -117,7 +117,7 @@ export default function PosHeader({ showTableView = true }) {
               fontSize: 13,
               px: 2,
               py: 0.7,
-              bgcolor: '#dc2626',
+              bgcolor: '#9a1717',
               color: '#fff',
               boxShadow: 'none',
               '&:hover': { bgcolor: '#b91c1c', boxShadow: 'none' }
@@ -179,7 +179,7 @@ export default function PosHeader({ showTableView = true }) {
         </Tooltip>
 
         <Tooltip title={isOnline ? 'Online' : 'Offline'}>
-          <IconButton size="small" sx={{ color: isOnline ? '#22c55e' : '#ef4444' }}>
+          <IconButton size="small" sx={{ color: isOnline ? '#186b35' : '#b81c1c' }}>
             {isOnline ? <Wifi fontSize="small" /> : <WifiOff fontSize="small" />}
           </IconButton>
         </Tooltip>
@@ -193,7 +193,7 @@ export default function PosHeader({ showTableView = true }) {
             sx={{ 
               width: 32, 
               height: 32, 
-              bgcolor: roleInfo.color || '#FF3D01', 
+              bgcolor: roleInfo.color || '#E8332A', 
               fontSize: 12, 
               fontWeight: 700,
               cursor: 'pointer'

@@ -131,7 +131,7 @@ export default function SettingsPage() {
                   secondary="Current interface colour scheme" />
                 <ListItemSecondaryAction>
                   <Chip label={themeMode === 'dark' ? '🌙 Dark' : '☀️ Light'} size="small"
-                    sx={{ fontWeight: 700, bgcolor: themeMode === 'dark' ? '#1a1e2e' : '#fff8f5', color: themeMode === 'dark' ? '#fff' : '#FF3D01', border: '1.5px solid', borderColor: themeMode === 'dark' ? 'rgba(255,255,255,0.12)' : 'rgba(255,61,1,0.25)' }} />
+                    sx={{ fontWeight: 700, bgcolor: themeMode === 'dark' ? '#1a1e2e' : '#fff8f5', color: themeMode === 'dark' ? '#fff' : '#E8332A', border: '1.5px solid', borderColor: themeMode === 'dark' ? 'rgba(255,255,255,0.12)' : 'rgba(255,61,1,0.25)' }} />
                 </ListItemSecondaryAction>
               </ListItem>
             </List>
@@ -257,7 +257,7 @@ export default function SettingsPage() {
               {Object.entries(PERMISSIONS).map(([r, perms]) => (
                 <Paper key={r} variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 1.5 }}>
-                    <Avatar sx={{ width: 34, height: 34, bgcolor: r === 'admin' ? '#FF3D01' : r === 'manager' ? '#1a4fcc' : r === 'chef' ? '#7e22ce' : r === 'cashier' ? '#7a5a00' : r === 'captain' ? '#186b35' : '#c2610a', fontSize: 12, fontWeight: 800, textTransform: 'capitalize' }}>
+                    <Avatar sx={{ width: 34, height: 34, bgcolor: r === 'admin' ? '#E8332A' : r === 'manager' ? '#1a4fcc' : r === 'chef' ? '#7e22ce' : r === 'cashier' ? '#7a5a00' : r === 'captain' ? '#186b35' : '#c2610a', fontSize: 12, fontWeight: 800, textTransform: 'capitalize' }}>
                       {r[0].toUpperCase()}
                     </Avatar>
                     <Typography fontWeight={800} fontSize={14} sx={{ textTransform: 'capitalize' }}>{r}</Typography>

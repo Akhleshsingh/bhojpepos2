@@ -6,7 +6,7 @@ import { loginAsync, registerAsync, clearError, ROLES } from '../../features/aut
 import { useNavigate } from 'react-router-dom'
 
 const DEMO_USERS = [
-  { role: 'admin', username: 'admin', password: 'demo123', color: '#FF3D01', label: 'Admin' },
+  { role: 'admin', username: 'admin', password: 'demo123', color: '#E8332A', label: 'Admin' },
   { role: 'manager', username: 'manager', password: 'demo123', color: '#1a4fcc', label: 'Manager' },
   { role: 'cashier', username: 'cashier', password: 'demo123', color: '#186b35', label: 'Cashier' },
   { role: 'waiter', username: 'waiter', password: 'demo123', color: '#7a5a00', label: 'Waiter' },
@@ -34,8 +34,8 @@ function PasscodeInput({ onSubmit }) {
         {[0,1,2,3].map(i => (
           <Box key={i} sx={{ 
             width: 18, height: 18, borderRadius: '50%', border: '2px solid', 
-            borderColor: code[i] !== undefined ? '#FF3D01' : 'divider', 
-            bgcolor: code[i] !== undefined ? '#FF3D01' : 'transparent', 
+            borderColor: code[i] !== undefined ? '#E8332A' : 'divider', 
+            bgcolor: code[i] !== undefined ? '#E8332A' : 'transparent', 
             transition: 'all 0.2s',
             transform: code[i] !== undefined ? 'scale(1.15)' : 'scale(1)',
             boxShadow: code[i] !== undefined ? '0 2px 8px rgba(255,61,1,0.4)' : 'none'
@@ -182,7 +182,7 @@ export default function LoginPage() {
                   ))}
                 </Box>
                 <Typography sx={{ fontSize: 11, color: 'text.disabled', mt: 1.5 }}>
-                  Super Admin: <strong style={{ fontFamily: 'monospace', color: '#FF3D01' }}>superadmin / admin123</strong>
+                  Super Admin: <strong style={{ fontFamily: 'monospace', color: '#E8332A' }}>superadmin / admin123</strong>
                 </Typography>
               </Box>
 

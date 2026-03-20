@@ -1,5 +1,5 @@
 export const MOCK_STAFF = [
-  { id: 'S001', name: 'Sanjay Kumar', email: 'sanjay@bhojpe.com', phone: '+919876543201', role: 'Manager', shift: 'Full', salary: 25000, join: '2024-01-15', status: 'active', orders: 142, color: '#FF3D01' },
+  { id: 'S001', name: 'Sanjay Kumar', email: 'sanjay@bhojpe.com', phone: '+919876543201', role: 'Manager', shift: 'Full', salary: 25000, join: '2024-01-15', status: 'active', orders: 142, color: '#E8332A' },
   { id: 'S002', name: 'Raju Singh', email: 'raju@bhojpe.com', phone: '+918765432102', role: 'Waiter', shift: 'Morning', salary: 14000, join: '2024-03-10', status: 'active', orders: 89, color: '#1a4fcc' },
   { id: 'S003', name: 'Arjun Sharma', email: 'arjun@bhojpe.com', phone: '+917654321003', role: 'Waiter', shift: 'Evening', salary: 14000, join: '2024-04-05', status: 'active', orders: 76, color: '#186b35' },
   { id: 'S004', name: 'Pooja Verma', email: 'pooja@bhojpe.com', phone: '+916543210904', role: 'Cashier', shift: 'Full', salary: 18000, join: '2024-02-20', status: 'active', orders: 210, color: '#7a5a00' },

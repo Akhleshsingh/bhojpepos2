@@ -39,7 +39,7 @@ const topItems = [
 ]
 
 const catData = [
-  { name: 'Main Course',   value: 42, color: '#FF3D01' },
+  { name: 'Main Course',   value: 42, color: '#E8332A' },
   { name: 'Beverages',     value: 20, color: '#1a4fcc' },
   { name: 'Starters',      value: 18, color: '#186b35' },
   { name: 'Rice & Biryani',value: 12, color: '#7a5a00' },
@@ -49,11 +49,11 @@ const catData = [
 const paymentData = [
   { name: 'UPI',  value: 48, color: '#1a4fcc' },
   { name: 'Cash', value: 31, color: '#186b35' },
-  { name: 'Card', value: 21, color: '#FF3D01' },
+  { name: 'Card', value: 21, color: '#E8332A' },
 ]
 
 const orderTypeData = [
-  { name: 'Dine In',  value: 58, color: '#FF3D01' },
+  { name: 'Dine In',  value: 58, color: '#E8332A' },
   { name: 'Pickup',   value: 22, color: '#7a5a00' },
   { name: 'Delivery', value: 20, color: '#186b35' },
 ]
@@ -98,7 +98,7 @@ export default function ReportsPage() {
   const avgOrder = completedOrders.length > 0 ? totalRevenue / completedOrders.length : 0
 
   const stats = [
-    { title: 'Total Revenue',  value: formatCurrency(totalRevenue || 133400), icon: <AttachMoney />, color: '#FF3D01', trend: 'up', trendValue: '+18.2%', subtitle: 'vs last week' },
+    { title: 'Total Revenue',  value: formatCurrency(totalRevenue || 133400), icon: <AttachMoney />, color: '#E8332A', trend: 'up', trendValue: '+18.2%', subtitle: 'vs last week' },
     { title: 'Total Orders',   value: orders.length || 476, icon: <Receipt />,    color: '#1a4fcc', trend: 'up', trendValue: '+12.5%' },
     { title: 'Avg Order Value',value: formatCurrency(avgOrder || 280), icon: <TrendingUp />, color: '#186b35' },
     { title: 'Customers',      value: customers.length || 142, icon: <People />,  color: '#7a5a00', trend: 'up', trendValue: '+8.3%' },
@@ -145,15 +145,15 @@ export default function ReportsPage() {
                   <AreaChart data={weekly}>
                     <defs>
                       <linearGradient id="revGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#FF3D01" stopOpacity={0.18} />
-                        <stop offset="95%" stopColor="#FF3D01" stopOpacity={0} />
+                        <stop offset="5%" stopColor="#E8332A" stopOpacity={0.18} />
+                        <stop offset="95%" stopColor="#E8332A" stopOpacity={0} />
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.05)" />
                     <XAxis dataKey="day" tick={{ fontSize: 12, fontWeight: 600 }} />
                     <YAxis tick={{ fontSize: 11 }} tickFormatter={v => `₹${(v/1000).toFixed(0)}k`} />
                     <Tooltip content={<CUSTOM_TOOLTIP />} />
-                    <Area type="monotone" dataKey="revenue" name="Revenue" stroke="#FF3D01" strokeWidth={2.5} fill="url(#revGrad)" dot={{ r: 4, fill: '#FF3D01', strokeWidth: 0 }} activeDot={{ r: 6 }} />
+                    <Area type="monotone" dataKey="revenue" name="Revenue" stroke="#E8332A" strokeWidth={2.5} fill="url(#revGrad)" dot={{ r: 4, fill: '#E8332A', strokeWidth: 0 }} activeDot={{ r: 6 }} />
                   </AreaChart>
                 </ResponsiveContainer>
               </Grid>
@@ -176,7 +176,7 @@ export default function ReportsPage() {
                     <XAxis dataKey="month" tick={{ fontSize: 10 }} />
                     <YAxis hide />
                     <Tooltip formatter={v => [formatCurrency(v), 'Revenue']} />
-                    <Line type="monotone" dataKey="revenue" stroke="#FF3D01" strokeWidth={2} dot={false} />
+                    <Line type="monotone" dataKey="revenue" stroke="#E8332A" strokeWidth={2} dot={false} />
                   </LineChart>
                 </ResponsiveContainer>
               </Grid>
