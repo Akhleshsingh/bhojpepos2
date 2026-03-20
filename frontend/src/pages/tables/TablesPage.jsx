@@ -162,7 +162,8 @@ function QuickViewPopover({ anchorEl, onClose, tableId, tableName }) {
 }
 
 // Table Card Component with Hover Preview
-function TableCard({ table, onClick, onSelect, isSelected, selectionMode }) {
+function TableCard({ table, onClick, onSelect, isSelected, selectionMode, onStatusUpdate }) {
+  const navigate = useNavigate()
   const [hoverAnchor, setHoverAnchor] = useState(null)
   const [hoverTimeout, setHoverTimeout] = useState(null)
   
@@ -276,15 +277,27 @@ function TableCard({ table, onClick, onSelect, isSelected, selectionMode }) {
                 </>
               ) : (
                 <>
-                  <Button size="small" variant="outlined" onClick={(e) => { e.stopPropagation() }}
+                  <Button size="small" variant="outlined"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      navigate('/pos', { state: { tableId: table.id, tableName: table.name } })
+                    }}
                     sx={{ ml: 'auto', minWidth: 0, px: 0.8, py: 0.2, fontSize: 10, fontWeight: 700, borderColor: '#d1d5db', color: '#374151' }}>
                     +KOT
                   </Button>
-                  <Button size="small" variant="outlined" onClick={(e) => { e.stopPropagation() }}
+                  <Button size="small" variant="outlined"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      navigate('/pos', { state: { tableId: table.id, tableName: table.name } })
+                    }}
                     sx={{ minWidth: 0, px: 0.8, py: 0.2, fontSize: 10, fontWeight: 700, borderColor: '#d1d5db', color: '#374151' }}>
                     Bill
                   </Button>
-                  <Button size="small" variant="contained" onClick={(e) => { e.stopPropagation() }}
+                  <Button size="small" variant="contained"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      navigate('/pos', { state: { tableId: table.id, tableName: table.name } })
+                    }}
                     sx={{ minWidth: 0, px: 0.8, py: 0.2, fontSize: 10, fontWeight: 700, bgcolor: '#186b35', '&:hover': { bgcolor: '#145028' } }}>
                     Pay
                   </Button>
@@ -469,11 +482,18 @@ function AddTableDialog({ open, onClose, onAdd }) {
   const [capacity, setCapacity] = useState(4)
   const [floor, setFloor] = useState('Ground Floor')
 
+  // Reset state when dialog closes
+  useEffect(() => {
+    if (!open) {
+      setName('')
+      setCapacity(4)
+      setFloor('Ground Floor')
+    }
+  }, [open])
+
   const handleSubmit = () => {
     if (!name.trim()) return
     onAdd({ name: name.trim(), capacity, floor })
-    setName('')
-    setCapacity(4)
     onClose()
   }
 
@@ -551,7 +571,16 @@ export default function TablesPage() {
     return result
   }, [tablesByFloor, activeSection, statusFilter])
 
-  const handleTableClick = (table) => navigate('/pos', { state: { tableId: table.id, tableName: table.name } })
+  const handleTableClick = async (table) => {
+    // Mark table as occupied when a user starts a session at it
+    if (table.status === 'available') {
+      try {
+        await apiClient.put(`/tables/${table.id}`, { status: 'occupied' })
+        dispatch(updateTable({ id: table.id, data: { status: 'occupied' } }))
+      } catch (e) { console.log('Table status update failed:', e) }
+    }
+    navigate('/pos', { state: { tableId: table.id, tableName: table.name } })
+  }
 
   const handleSelectTable = (tableId) => {
     setSelectedTables(prev => prev.includes(tableId) ? prev.filter(id => id !== tableId) : [...prev, tableId])
@@ -559,10 +588,10 @@ export default function TablesPage() {
 
   const handleAddTable = async (data) => {
     try {
-      await dispatch(createTable(data))
+      await dispatch(createTable(data)).unwrap()
       dispatch(showSnackbar({ message: 'Table added successfully', severity: 'success' }))
     } catch (err) {
-      dispatch(showSnackbar({ message: 'Failed to add table', severity: 'error' }))
+      dispatch(showSnackbar({ message: `Failed to add table: ${err}`, severity: 'error' }))
     }
   }
 

@@ -11,11 +11,12 @@ import {
   TableRestaurant, TakeoutDining, LocalShipping, ArrowBack,
   Close, CheckCircle, Receipt, Note, Person, PlaylistAdd, CreditCard,
 } from '@mui/icons-material'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import {
   addToCurrentOrder, removeFromCurrentOrder, updateItemQty,
-  clearCurrentOrder, setOrderType, holdOrder, createOrder,
+  clearCurrentOrder, setOrderType, setOrderTable, holdOrder, createOrder,
 } from '../../features/ordersSlice'
+import { updateTable } from '../../features/tablesSlice'
 import { fetchMenu } from '../../features/menuSlice'
 import { showSnackbar, addActivityLog } from '../../features/uiSlice'
 import SyncIndicator from '../../components/common/SyncIndicator'
@@ -183,6 +184,7 @@ function SuccessDialog({ open, order, onNewOrder, onPrint }) {
 export default function PosPage() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const location = useLocation()
   const { items: menu, loading: menuLoading } = useSelector(s => s.menu)
   const { currentOrder, heldOrders } = useSelector(s => s.orders)
   const user = useSelector(s => s.auth.user)
@@ -200,10 +202,20 @@ export default function PosPage() {
   const [receiptDialog, setReceiptDialog] = useState(false)
   const [receiptData, setReceiptData] = useState(null)
   const [receiptLoading, setReceiptLoading] = useState(false)
+  const [currentTableId, setCurrentTableId] = useState(null)
 
   const debouncedSearch = useDebounce(search, 180)
 
   useEffect(() => { dispatch(fetchMenu()) }, [dispatch])
+
+  // Read table context from navigation state (when clicking from Tables page)
+  useEffect(() => {
+    if (location.state?.tableId) {
+      setCurrentTableId(location.state.tableId)
+      dispatch(setOrderType('dine'))
+      dispatch(setOrderTable(location.state.tableName))
+    }
+  }, [location.state, dispatch])
 
   const categories = ['All', ...new Set(menu.map(i => i.category).filter(Boolean))]
 
@@ -240,6 +252,14 @@ export default function PosPage() {
     setPayLoading(false)
 
     if (createOrder.fulfilled.match(result)) {
+      // Mark table as available after payment
+      if (currentTableId) {
+        try {
+          await apiClient.put(`/tables/${currentTableId}`, { status: 'available', guestCount: 0 })
+          dispatch(updateTable({ id: currentTableId, data: { status: 'available', guestCount: 0 } }))
+        } catch (e) { console.log('Table status update failed:', e) }
+        setCurrentTableId(null)
+      }
       setLastOrder(result.payload)
       dispatch(clearCurrentOrder())
       setSelectedCustomer(null)
