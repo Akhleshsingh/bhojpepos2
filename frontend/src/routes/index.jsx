@@ -11,6 +11,7 @@ import { hasPermission, isModuleActive } from '../features/authSlice'
 const LoginPage = lazy(() => import('../pages/auth/LoginPage'))
 const Dashboard = lazy(() => import('../pages/Dashboard'))
 const PosPage = lazy(() => import('../pages/pos/PosPage'))
+const PosPageNew = lazy(() => import('../pages/pos/PosPageNew'))
 const OrdersPage = lazy(() => import('../pages/orders/OrdersPage'))
 const ReservationsPage = lazy(() => import('../pages/reservations/ReservationsPage'))
 const CustomersPage = lazy(() => import('../pages/customers/CustomersPage'))
@@ -61,9 +62,13 @@ export default function AppRoutes() {
         <ProtectedRoute permission="pos" moduleKey="tables"><Wrap><TablesPage /></Wrap></ProtectedRoute>
       } />
 
-      {/* POS - fullscreen, no sidebar */}
+      {/* POS - fullscreen, no sidebar - NEW DESIGN */}
+      <Route path="/pos" element={
+        <ProtectedRoute permission="pos" moduleKey="pos"><Wrap><PosPageNew /></Wrap></ProtectedRoute>
+      } />
+      
       <Route element={<ProtectedRoute moduleKey="pos"><PosLayout /></ProtectedRoute>}>
-        <Route path="/pos" element={
+        <Route path="/pos-old" element={
           <ProtectedRoute permission="pos" moduleKey="pos"><Wrap><PosPage /></Wrap></ProtectedRoute>
         } />
         <Route path="/payment-success" element={
